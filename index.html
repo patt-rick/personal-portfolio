@@ -109,42 +109,61 @@
         <!-- Hero Section -->
         <section class="hero" id="hero">
             <canvas id="hero-canvas"></canvas>
-            <div class="hero-content">
-                <div class="hero-badge reveal">
-                    <span class="status-dot"></span>
-                    Available for opportunities
-                </div>
-                <h1 class="hero-title reveal">
-                    <span class="hero-line">Hi, I'm <span class="accent">Patrick</span></span>
-                    <span class="hero-line">I build things for</span>
-                    <span class="hero-line"
-                        >the <span class="typed-text" id="typed-text"></span
-                        ><span class="typed-cursor">|</span></span
-                    >
-                </h1>
-                <p class="hero-subtitle reveal">
-                    Fullstack Engineer crafting performant, scalable applications across web,
-                    mobile, and AI — from pixel to production.
-                </p>
-                <div class="hero-cta reveal">
-                    <a href="#projects" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
-                </div>
-                <div class="hero-stats reveal">
-                    <div class="stat">
-                        <span class="stat-number" data-target="50">0</span
-                        ><span class="accent">+</span>
-                        <span class="stat-label">Projects Delivered</span>
+            <div class="hero-inner">
+                <div class="hero-content">
+                    <div class="hero-badge reveal">
+                        <span class="status-dot"></span>
+                        Available for opportunities
                     </div>
-                    <div class="stat">
-                        <span class="stat-number" data-target="5">0</span
-                        ><span class="accent">+</span>
-                        <span class="stat-label">Years Experience</span>
+                    <h1 class="hero-title reveal">
+                        <span class="hero-line">Hi, I'm <span class="accent">Patrick</span></span>
+                        <span class="hero-line">I build things for</span>
+                        <span class="hero-line"
+                            >the <span class="typed-text" id="typed-text"></span
+                            ><span class="typed-cursor">|</span></span
+                        >
+                    </h1>
+                    <p class="hero-subtitle reveal">
+                        Fullstack Engineer crafting performant, scalable applications across web,
+                        mobile, and AI — from pixel to production.
+                    </p>
+                    <div class="hero-cta reveal">
+                        <a href="#projects" class="btn btn-primary">View My Work</a>
+                        <a href="#contact" class="btn btn-outline">Get In Touch</a>
                     </div>
-                    <div class="stat">
-                        <span class="stat-number" data-target="10">0</span
-                        ><span class="accent">+</span>
-                        <span class="stat-label">Technologies</span>
+                    <div class="hero-stats reveal">
+                        <div class="stat">
+                            <span class="stat-number" data-target="50">0</span
+                            ><span class="accent">+</span>
+                            <span class="stat-label">Projects Delivered</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" data-target="5">0</span
+                            ><span class="accent">+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" data-target="10">0</span
+                            ><span class="accent">+</span>
+                            <span class="stat-label">Technologies</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-photo-wrapper reveal">
+                    <div class="hero-photo-container" id="hero-photo-container">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop" alt="Patrick Ackom" class="hero-photo" id="hero-photo" />
+                        <div class="hero-photo-outline"></div>
+                        <div class="hero-photo-hint" id="hero-photo-hint">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <circle cx="12" cy="12" r="3"/>
+                                <line x1="12" y1="2" x2="12" y2="5"/>
+                                <line x1="12" y1="19" x2="12" y2="22"/>
+                                <line x1="2" y1="12" x2="5" y2="12"/>
+                                <line x1="19" y1="12" x2="22" y2="12"/>
+                            </svg>
+                            <span>Hover to reveal</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1002,5 +1021,6 @@
         <script src="js/typing.js" defer></script>
         <script src="js/scroll.js" defer></script>
         <script src="js/particles.js" defer></script>
+        <script src="js/reveal.js" defer></script>
     </body>
 </html>
