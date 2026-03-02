@@ -132,6 +132,7 @@
 .color-dot[data-color="orange"] { background: #f97316; }
 .color-dot[data-color="purple"] { background: #6c63ff; }
 .color-dot[data-color="blue"] { background: #3b82f6; }
+.color-dot[data-color="grey"] { background: #9ca3af; }
 
 /* Hamburger Toggle */
 .nav-toggle {

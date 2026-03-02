@@ -78,6 +78,15 @@
   --accent-rgb: 59, 130, 246;
 }
 
+/* Grey */
+[data-color="grey"] {
+  --accent: #9ca3af;
+  --accent-hover: #b5bcc7;
+  --accent-glow: rgba(156, 163, 175, 0.15);
+  --accent-gradient: linear-gradient(135deg, #9ca3af, #6b7280);
+  --accent-rgb: 156, 163, 175;
+}
+
 /* Light theme accent text contrast adjustments */
 [data-theme="light"][data-color="green"] {
   --accent: #65a30d;
@@ -85,4 +94,12 @@
   --accent-glow: rgba(101, 163, 13, 0.12);
   --accent-gradient: linear-gradient(135deg, #84cc16, #65a30d);
   --accent-rgb: 101, 163, 13;
+}
+
+[data-theme="light"][data-color="grey"] {
+  --accent: #6b7280;
+  --accent-hover: #4b5563;
+  --accent-glow: rgba(107, 114, 128, 0.12);
+  --accent-gradient: linear-gradient(135deg, #9ca3af, #6b7280);
+  --accent-rgb: 107, 114, 128;
 }
