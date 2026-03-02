@@ -1,0 +1,1006 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-color="green">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Patrick Ackom | Fullstack Engineer</title>
+        <meta
+            name="description"
+            content="Patrick Ackom - Fullstack Engineer specializing in React, TypeScript, Node.js, AI/ML, and Mobile Development"
+        />
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/base.css" />
+        <link rel="stylesheet" href="css/themes.css" />
+        <link rel="stylesheet" href="css/components.css" />
+        <link rel="stylesheet" href="css/nav.css" />
+        <link rel="stylesheet" href="css/hero.css" />
+        <link rel="stylesheet" href="css/sections.css" />
+        <link rel="stylesheet" href="css/animations.css" />
+        <link rel="stylesheet" href="css/responsive.css" />
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <!-- Custom Cursor -->
+        <div class="cursor" id="cursor"></div>
+        <div class="cursor-follower" id="cursor-follower"></div>
+
+        <!-- Navigation -->
+        <nav class="nav" id="nav">
+            <a href="#hero" class="nav-logo">PA<span class="accent">.</span></a>
+            <div class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-controls">
+                <div class="color-picker">
+                    <button class="color-dot" data-color="green" aria-label="Green theme"></button>
+                    <button
+                        class="color-dot"
+                        data-color="orange"
+                        aria-label="Orange theme"
+                    ></button>
+                    <button
+                        class="color-dot"
+                        data-color="purple"
+                        aria-label="Purple theme"
+                    ></button>
+                    <button class="color-dot" data-color="blue" aria-label="Blue theme"></button>
+                </div>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+                    <!-- Sun icon (shown in dark mode) -->
+                    <svg
+                        class="icon-sun"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <circle cx="12" cy="12" r="5" />
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    </svg>
+                    <!-- Moon icon (shown in light mode) -->
+                    <svg
+                        class="icon-moon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </button>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="#about" class="mobile-link">About</a>
+            <a href="#skills" class="mobile-link">Skills</a>
+            <a href="#projects" class="mobile-link">Projects</a>
+            <a href="#experience" class="mobile-link">Experience</a>
+            <a href="#contact" class="mobile-link">Contact</a>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <canvas id="hero-canvas"></canvas>
+            <div class="hero-content">
+                <div class="hero-badge reveal">
+                    <span class="status-dot"></span>
+                    Available for opportunities
+                </div>
+                <h1 class="hero-title reveal">
+                    <span class="hero-line">Hi, I'm <span class="accent">Patrick</span></span>
+                    <span class="hero-line">I build things for</span>
+                    <span class="hero-line"
+                        >the <span class="typed-text" id="typed-text"></span
+                        ><span class="typed-cursor">|</span></span
+                    >
+                </h1>
+                <p class="hero-subtitle reveal">
+                    Fullstack Engineer crafting performant, scalable applications across web,
+                    mobile, and AI — from pixel to production.
+                </p>
+                <div class="hero-cta reveal">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                </div>
+                <div class="hero-stats reveal">
+                    <div class="stat">
+                        <span class="stat-number" data-target="50">0</span
+                        ><span class="accent">+</span>
+                        <span class="stat-label">Projects Delivered</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="5">0</span
+                        ><span class="accent">+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="10">0</span
+                        ><span class="accent">+</span>
+                        <span class="stat-label">Technologies</span>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="scroll-line"></div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section" id="about">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag">01 / About</span>
+                    <h2 class="section-title">
+                        Turning complex problems<br />into elegant solutions
+                    </h2>
+                </div>
+                <div class="about-grid">
+                    <div class="about-text reveal">
+                        <p>
+                            I'm a fullstack engineer who thrives at the intersection of design and
+                            engineering. I build applications that are not only functional but
+                            delightful to use — whether that's a responsive web app, a native mobile
+                            experience, or an AI-powered platform.
+                        </p>
+                        <p>
+                            My approach combines deep technical expertise with a keen eye for user
+                            experience. I believe great software should feel invisible — it just
+                            works, beautifully and fast.
+                        </p>
+                        <p>
+                            When I'm not coding, you'll find me exploring new technologies,
+                            contributing to open-source projects, and pushing the boundaries of
+                            what's possible with modern web technologies and AI.
+                        </p>
+                        <div class="about-highlights">
+                            <div class="highlight">
+                                <div class="highlight-icon">
+                                    <svg
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4>Fast & Performant</h4>
+                                    <p>
+                                        Optimized for speed and efficiency at every layer of the
+                                        stack.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="highlight">
+                                <div class="highlight-icon">
+                                    <svg
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <rect x="2" y="3" width="20" height="14" rx="2" />
+                                        <path d="M8 21h8M12 17v4" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4>Responsive & Accessible</h4>
+                                    <p>Pixel-perfect on every device, accessible to every user.</p>
+                                </div>
+                            </div>
+                            <div class="highlight">
+                                <div class="highlight-icon">
+                                    <svg
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                                        <path d="M2 17l10 5 10-5" />
+                                        <path d="M2 12l10 5 10-5" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4>Scalable Architecture</h4>
+                                    <p>
+                                        Built to grow — clean code, modular design, battle-tested
+                                        patterns.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-image reveal">
+                        <div class="code-window">
+                            <div class="code-header">
+                                <span class="code-dot red"></span>
+                                <span class="code-dot yellow"></span>
+                                <span class="code-dot green"></span>
+                                <span class="code-title">patrick.ts</span>
+                            </div>
+                            <pre
+                                class="code-body"
+                            ><code><span class="code-keyword">interface</span> <span class="code-type">Engineer</span> {
+  <span class="code-prop">name</span>: <span class="code-string">"Patrick Ackom"</span>;
+  <span class="code-prop">role</span>: <span class="code-string">"Fullstack Engineer"</span>;
+  <span class="code-prop">languages</span>: <span class="code-type">string</span>[];
+  <span class="code-prop">passion</span>: <span class="code-string">"Building the future"</span>;
+}
+
+<span class="code-keyword">const</span> <span class="code-var">patrick</span>: <span class="code-type">Engineer</span> = {
+  <span class="code-prop">name</span>: <span class="code-string">"Patrick Ackom"</span>,
+  <span class="code-prop">role</span>: <span class="code-string">"Fullstack Engineer"</span>,
+  <span class="code-prop">languages</span>: [
+    <span class="code-string">"TypeScript"</span>,
+    <span class="code-string">"JavaScript"</span>,
+    <span class="code-string">"Python"</span>,
+    <span class="code-string">"HTML/CSS"</span>,
+  ],
+  <span class="code-prop">passion</span>: <span class="code-string">"Building the future"</span>,
+};
+
+<span class="code-keyword">export default</span> <span class="code-var">patrick</span>;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section section-dark" id="skills">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag">02 / Skills</span>
+                    <h2 class="section-title">My technical arsenal</h2>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-category reveal">
+                        <div class="skill-category-header">
+                            <div class="skill-icon">
+                                <svg
+                                    width="28"
+                                    height="28"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <polyline points="16 18 22 12 16 6" />
+                                    <polyline points="8 6 2 12 8 18" />
+                                </svg>
+                            </div>
+                            <h3>Frontend</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">Next.js</span>
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3 / SCSS</span>
+                            <span class="skill-tag">Tailwind CSS</span>
+                            <span class="skill-tag">Redux</span>
+                            <span class="skill-tag">Vue.js</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category reveal">
+                        <div class="skill-category-header">
+                            <div class="skill-icon">
+                                <svg
+                                    width="28"
+                                    height="28"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <rect x="2" y="2" width="20" height="8" rx="2" />
+                                    <rect x="2" y="14" width="20" height="8" rx="2" />
+                                    <circle cx="6" cy="6" r="1" />
+                                    <circle cx="6" cy="18" r="1" />
+                                </svg>
+                            </div>
+                            <h3>Backend</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Express</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">REST APIs</span>
+                            <span class="skill-tag">GraphQL</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">Firebase</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category reveal">
+                        <div class="skill-category-header">
+                            <div class="skill-icon">
+                                <svg
+                                    width="28"
+                                    height="28"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <rect x="5" y="2" width="14" height="20" rx="2" />
+                                    <path d="M12 18h.01" />
+                                </svg>
+                            </div>
+                            <h3>Mobile</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">React Native</span>
+                            <span class="skill-tag">Expo</span>
+                            <span class="skill-tag">iOS</span>
+                            <span class="skill-tag">Android</span>
+                            <span class="skill-tag">Flutter</span>
+                            <span class="skill-tag">App Store Deploy</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category reveal">
+                        <div class="skill-category-header">
+                            <div class="skill-icon">
+                                <svg
+                                    width="28"
+                                    height="28"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <path
+                                        d="M12 2a4 4 0 0 0-4 4c0 2 2 3 2 6h4c0-3 2-4 2-6a4 4 0 0 0-4-4z"
+                                    />
+                                    <path d="M10 16v1a2 2 0 1 0 4 0v-1" />
+                                    <line x1="9" y1="18" x2="15" y2="18" />
+                                </svg>
+                            </div>
+                            <h3>AI / ML</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">OpenAI API</span>
+                            <span class="skill-tag">LLM Integration</span>
+                            <span class="skill-tag">Claude API</span>
+                            <span class="skill-tag">Prompt Engineering</span>
+                            <span class="skill-tag">TensorFlow</span>
+                            <span class="skill-tag">AI Agents</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category reveal">
+                        <div class="skill-category-header">
+                            <div class="skill-icon">
+                                <svg
+                                    width="28"
+                                    height="28"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <circle cx="12" cy="12" r="3" />
+                                    <path
+                                        d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+                                    />
+                                </svg>
+                            </div>
+                            <h3>Other</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Git / GitHub</span>
+                            <span class="skill-tag">Agile / Scrum</span>
+                            <span class="skill-tag">System Design</span>
+                            <span class="skill-tag">UI/UX Design</span>
+                            <span class="skill-tag">Testing</span>
+                            <span class="skill-tag">Performance</span>
+                            <span class="skill-tag">Security</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section" id="projects">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag">03 / Projects</span>
+                    <h2 class="section-title">Selected work</h2>
+                </div>
+                <div class="projects-grid">
+                    <article class="project-card reveal">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <svg
+                                    width="48"
+                                    height="48"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M12 2a4 4 0 0 0-4 4c0 2 2 3 2 6h4c0-3 2-4 2-6a4 4 0 0 0-4-4z"
+                                    />
+                                    <path d="M10 16v1a2 2 0 1 0 4 0v-1" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-tags">
+                                <span>React</span><span>Node.js</span><span>AI</span
+                                ><span>OpenAI</span>
+                            </div>
+                            <h3 class="project-title">AI-Powered Chat Platform</h3>
+                            <p class="project-desc">
+                                Real-time conversational AI platform with multi-model support,
+                                context-aware responses, and seamless user experience. Built with
+                                streaming APIs and optimized for low-latency interactions.
+                            </p>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <svg
+                                        width="18"
+                                        height="18"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path
+                                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                        />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg>
+                                    Live Demo
+                                </a>
+                                <a href="#" class="project-link">
+                                    <svg
+                                        width="18"
+                                        height="18"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path
+                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                                        />
+                                    </svg>
+                                    Source
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <svg
+                                    width="48"
+                                    height="48"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <rect x="2" y="3" width="20" height="14" rx="2" />
+                                    <path d="M8 21h8M12 17v4" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-tags">
+                                <span>React</span><span>TypeScript</span><span>Node.js</span
+                                ><span>PostgreSQL</span>
+                            </div>
+                            <h3 class="project-title">School Management System</h3>
+                            <p class="project-desc">
+                                Comprehensive education platform handling admissions, classroom
+                                management, and administrative workflows. Serves multiple schools
+                                with role-based access control and real-time notifications.
+                            </p>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <svg
+                                        width="18"
+                                        height="18"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path
+                                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                        />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg>
+                                    Live Demo
+                                </a>
+                                <a href="#" class="project-link">
+                                    <svg
+                                        width="18"
+                                        height="18"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path
+                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                                        />
+                                    </svg>
+                                    Source
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <svg
+                                    width="48"
+                                    height="48"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <rect x="5" y="2" width="14" height="20" rx="2" />
+                                    <path d="M12 18h.01" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-tags">
+                                <span>React Native</span><span>Expo</span><span>Firebase</span>
+                            </div>
+                            <h3 class="project-title">Mobile Messaging App</h3>
+                            <p class="project-desc">
+                                Cross-platform mobile messaging application with real-time chat,
+                                media sharing, push notifications, and end-to-end encryption.
+                                Published on both App Store and Google Play.
+                            </p>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <svg
+                                        width="18"
+                                        height="18"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path
+                                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                        />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg>
+                                    Live Demo
+                                </a>
+                                <a href="#" class="project-link">
+                                    <svg
+                                        width="18"
+                                        height="18"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path
+                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                                        />
+                                    </svg>
+                                    Source
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <svg
+                                    width="48"
+                                    height="48"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <line x1="12" y1="1" x2="12" y2="23" />
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-tags">
+                                <span>React</span><span>Node.js</span><span>MongoDB</span
+                                ><span>Chart.js</span>
+                            </div>
+                            <h3 class="project-title">Finance Tracker Dashboard</h3>
+                            <p class="project-desc">
+                                Full-featured personal finance management tool with expense
+                                tracking, budget analytics, interactive charts, and smart
+                                categorization. Helps users visualize and optimize their spending
+                                habits.
+                            </p>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <svg
+                                        width="18"
+                                        height="18"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path
+                                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                        />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg>
+                                    Live Demo
+                                </a>
+                                <a href="#" class="project-link">
+                                    <svg
+                                        width="18"
+                                        height="18"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path
+                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                                        />
+                                    </svg>
+                                    Source
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card featured reveal">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <svg
+                                    width="48"
+                                    height="48"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-tags">
+                                <span>Python</span><span>TensorFlow</span><span>React</span
+                                ><span>FastAPI</span>
+                            </div>
+                            <h3 class="project-title">AI Content Generation Platform</h3>
+                            <p class="project-desc">
+                                Enterprise-grade content generation platform leveraging multiple AI
+                                models for text, image, and code generation. Features custom
+                                fine-tuning pipelines, usage analytics, and team collaboration
+                                tools.
+                            </p>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <svg
+                                        width="18"
+                                        height="18"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path
+                                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                        />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg>
+                                    Live Demo
+                                </a>
+                                <a href="#" class="project-link">
+                                    <svg
+                                        width="18"
+                                        height="18"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path
+                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                                        />
+                                    </svg>
+                                    Source
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <svg
+                                    width="48"
+                                    height="48"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <circle cx="12" cy="12" r="10" />
+                                    <line x1="2" y1="12" x2="22" y2="12" />
+                                    <path
+                                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                                    />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-tags">
+                                <span>Next.js</span><span>TypeScript</span><span>Prisma</span
+                                ><span>Stripe</span>
+                            </div>
+                            <h3 class="project-title">E-Commerce Platform</h3>
+                            <p class="project-desc">
+                                Modern e-commerce solution with server-side rendering, payment
+                                processing, inventory management, and admin dashboard. Optimized for
+                                SEO and conversion with sub-second page loads.
+                            </p>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <svg
+                                        width="18"
+                                        height="18"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path
+                                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                        />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg>
+                                    Live Demo
+                                </a>
+                                <a href="#" class="project-link">
+                                    <svg
+                                        width="18"
+                                        height="18"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path
+                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                                        />
+                                    </svg>
+                                    Source
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="section section-dark" id="experience">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag">04 / Experience</span>
+                    <h2 class="section-title">Where I've worked</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item reveal">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2023 — Present</span>
+                            <h3 class="timeline-title">Senior Fullstack Engineer</h3>
+                            <p class="timeline-company">Tech Company</p>
+                            <p class="timeline-desc">
+                                Leading development of scalable web applications and AI-powered
+                                features. Mentoring junior developers, and driving technical
+                                decisions across multiple product teams.
+                            </p>
+                            <div class="timeline-tags">
+                                <span>React</span><span>TypeScript</span><span>Node.js</span
+                                ><span>AI/ML</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2022 — 2023</span>
+                            <h3 class="timeline-title">Fullstack Developer</h3>
+                            <p class="timeline-company">Software Agency</p>
+                            <p class="timeline-desc">
+                                Built end-to-end solutions for diverse clients across education and
+                                finance sectors. Delivered 20+ production ready soluctions with a
+                                focus on performance and user experience.
+                            </p>
+                            <div class="timeline-tags">
+                                <span>React</span><span>Node js</span><span>MySQL</span
+                                ><span>Git</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2020 — 2021</span>
+                            <h3 class="timeline-title">Junior Frontend Developer</h3>
+                            <p class="timeline-company">Startup</p>
+                            <p class="timeline-desc">
+                                Developed responsive web applications and email templates. Improved
+                                site performance by 60% through code optimization.
+                            </p>
+                            <div class="timeline-tags">
+                                <span>Html</span><span>JavaScript</span><span>CSS</span
+                                ><span>Firebase</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section" id="contact">
+            <div class="container">
+                <div class="contact-wrapper">
+                    <div class="section-header reveal">
+                        <span class="section-tag">05 / Contact</span>
+                        <h2 class="section-title">Let's build<br />something great</h2>
+                        <p class="contact-subtitle">
+                            I'm always open to discussing new projects, creative ideas, or
+                            opportunities to be part of your vision. Let's connect.
+                        </p>
+                    </div>
+                    <div class="contact-grid reveal">
+                        <a href="mailto:patrickackom003@gmail.com" class="contact-card">
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <path
+                                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                                />
+                                <polyline points="22,6 12,13 2,6" />
+                            </svg>
+                            <span class="contact-label">Email</span>
+                            <span class="contact-value">patrickackom003@gmail.com</span>
+                        </a>
+                        <a
+                            href="https://github.com/patt-rick"
+                            target="_blank"
+                            rel="noopener"
+                            class="contact-card"
+                        >
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                                />
+                            </svg>
+                            <span class="contact-label">GitHub</span>
+                            <span class="contact-value">github.com/patt-rick</span>
+                        </a>
+                        <a
+                            href="https://www.linkedin.com/in/patrick-ackom"
+                            target="_blank"
+                            rel="noopener"
+                            class="contact-card"
+                        >
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                                />
+                                <rect x="2" y="9" width="4" height="12" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                            <span class="contact-label">LinkedIn</span>
+                            <span class="contact-value">linkedin.com/in/patrick-ackom</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <span class="footer-logo">PA<span class="accent">.</span></span>
+                    <p>Designed & Built by Patrick Ackom</p>
+                    <p class="footer-year">&copy; 2026</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- JS (theme first so it applies before paint, rest deferred) -->
+        <script src="js/theme.js"></script>
+        <script src="js/cursor.js" defer></script>
+        <script src="js/nav.js" defer></script>
+        <script src="js/typing.js" defer></script>
+        <script src="js/scroll.js" defer></script>
+        <script src="js/particles.js" defer></script>
+    </body>
+</html>
