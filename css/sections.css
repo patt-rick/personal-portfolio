@@ -55,15 +55,107 @@
 /* ============================================
    SKILLS
    ============================================ */
-.skills-grid {
+.skills-showcase {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px 64px;
 }
 
-.skill-category h3 {
-    font-size: 1.15rem;
-    font-weight: 700;
+.skills-column-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+.skills-label-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.skills-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.skill-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.skill-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    min-width: 110px;
+}
+
+.skill-bar {
+    flex: 1;
+    height: 4px;
+    background: var(--border);
+    border-radius: 100px;
+    overflow: hidden;
+}
+
+.skill-fill {
+    display: block;
+    height: 100%;
+    background: var(--accent-gradient);
+    border-radius: 100px;
+    transition: width 1s ease;
+}
+
+.skills-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-chip {
+    padding: 8px 18px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.skill-chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+    transform: translateY(-2px);
+}
+
+.skill-chip-lg {
+    font-size: 0.95rem;
+    padding: 10px 22px;
+    color: var(--text);
+    font-weight: 600;
+    border-color: rgba(var(--accent-rgb), 0.2);
+}
+
+.skill-chip-md {
+    font-size: 0.85rem;
+}
+
+.skill-chip-sm {
+    font-size: 0.8rem;
+    padding: 6px 14px;
+    color: var(--text-muted);
 }
 
 /* ============================================

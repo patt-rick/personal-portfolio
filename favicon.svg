@@ -1,0 +1,30 @@
+<svg viewBox="0 0 380 480" xmlns="http://www.w3.org/2000/svg" fill="none">
+    <!-- Decorative rings -->
+    <circle cx="190" cy="210" r="160" stroke="#9ca3af" stroke-opacity="0.04" stroke-dasharray="6 6" />
+    <circle cx="190" cy="210" r="120" stroke="#9ca3af" stroke-opacity="0.07" stroke-dasharray="4 8" />
+    <!-- Body -->
+    <path d="M95 480 C95 370 140 330 190 318 C240 330 285 370 285 480" fill="#9ca3af" fill-opacity="0.05" stroke="#9ca3af" stroke-opacity="0.1" stroke-width="1.5" />
+    <!-- Neck -->
+    <rect x="174" y="260" width="32" height="60" rx="14" fill="#9ca3af" fill-opacity="0.04" />
+    <!-- Head -->
+    <circle cx="190" cy="185" r="76" fill="#9ca3af" fill-opacity="0.05" stroke="#9ca3af" stroke-opacity="0.1" stroke-width="1.5" />
+    <!-- Hair -->
+    <path d="M114 178 C116 118 148 95 190 88 C232 95 264 118 266 178" fill="#9ca3af" fill-opacity="0.07" />
+    <!-- Glasses frame -->
+    <rect x="148" y="173" width="32" height="26" rx="7" stroke="#9ca3af" stroke-opacity="0.18" stroke-width="1.8" fill="#9ca3af" fill-opacity="0.02" />
+    <rect x="200" y="173" width="32" height="26" rx="7" stroke="#9ca3af" stroke-opacity="0.18" stroke-width="1.8" fill="#9ca3af" fill-opacity="0.02" />
+    <line x1="180" y1="186" x2="200" y2="186" stroke="#9ca3af" stroke-opacity="0.14" stroke-width="1.8" />
+    <line x1="148" y1="184" x2="132" y2="180" stroke="#9ca3af" stroke-opacity="0.1" stroke-width="1.5" />
+    <line x1="232" y1="184" x2="248" y2="180" stroke="#9ca3af" stroke-opacity="0.1" stroke-width="1.5" />
+    <!-- Eyes -->
+    <circle cx="164" cy="186" r="4.5" fill="#9ca3af" fill-opacity="0.2" />
+    <circle cx="216" cy="186" r="4.5" fill="#9ca3af" fill-opacity="0.2" />
+    <circle cx="166" cy="184" r="1.5" fill="#9ca3af" fill-opacity="0.06" />
+    <circle cx="218" cy="184" r="1.5" fill="#9ca3af" fill-opacity="0.06" />
+    <!-- Smile -->
+    <path d="M172 210 Q190 226 208 210" stroke="#9ca3af" stroke-opacity="0.15" stroke-width="2.2" stroke-linecap="round" />
+    <!-- Code brackets -->
+    <path d="M155 390 L140 405 L155 420" stroke="#9ca3af" stroke-opacity="0.08" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M225 390 L240 405 L225 420" stroke="#9ca3af" stroke-opacity="0.08" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <line x1="180" y1="385" x2="200" y2="425" stroke="#9ca3af" stroke-opacity="0.06" stroke-width="2" />
+</svg>

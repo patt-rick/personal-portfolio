@@ -29,12 +29,14 @@
   transform: translateY(0);
 }
 
-/* Stagger children */
-.skills-grid .reveal:nth-child(2) { transition-delay: 0.1s; }
-.skills-grid .reveal:nth-child(3) { transition-delay: 0.2s; }
-.skills-grid .reveal:nth-child(4) { transition-delay: 0.3s; }
-.skills-grid .reveal:nth-child(5) { transition-delay: 0.4s; }
-.skills-grid .reveal:nth-child(6) { transition-delay: 0.5s; }
+/* Skill bar fill animation */
+.skills-showcase.visible .skill-fill {
+  animation: fillBar 1.2s ease forwards;
+}
+
+@keyframes fillBar {
+  from { width: 0; }
+}
 
 .projects-grid .reveal:nth-child(2) { transition-delay: 0.1s; }
 .projects-grid .reveal:nth-child(3) { transition-delay: 0.2s; }

@@ -26,8 +26,9 @@
     height: 450px;
   }
 
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .skills-showcase {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 48px;
   }
 
   .projects-grid {
@@ -65,8 +66,13 @@
     position: static;
   }
 
-  .skills-grid {
+  .skills-showcase {
     grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .skill-name {
+    min-width: 90px;
   }
 
   .contact-grid {
