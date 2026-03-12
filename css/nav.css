@@ -189,10 +189,22 @@
 .mobile-link {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--text-secondary);
+  color: var(--accent);
   transition: color 0.3s ease;
 }
 
 .mobile-link:hover {
-  color: var(--accent);
+  color: var(--accent-hover);
+}
+
+.mobile-color-picker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.mobile-color-picker .color-dot {
+  width: 24px;
+  height: 24px;
 }
