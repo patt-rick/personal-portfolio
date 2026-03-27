@@ -59,29 +59,121 @@
   animation: pulse-dot 2s ease infinite;
 }
 
-.hero-title {
-  font-size: clamp(2.5rem, 7vw, 4.5rem);
-  font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: -0.04em;
+/* ============================================
+   VESTABOARD SPLIT-FLAP DISPLAY
+   ============================================ */
+.vestaboard {
+  display: inline-flex;
+  flex-direction: column;
+  gap: clamp(2px, 0.3vw, 4px);
+  background: #0c0c0c;
+  padding: clamp(8px, 1vw, 14px);
+  border-radius: clamp(6px, 0.8vw, 10px);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
   margin-bottom: 24px;
 }
 
-.hero-line {
-  display: block;
+.vesta-row {
+  display: flex;
+  gap: clamp(2px, 0.2vw, 3px);
+  perspective: 800px;
 }
 
-.typed-text {
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.vesta-tile {
+  width: clamp(13px, 2.1vw, 30px);
+  height: clamp(18px, 2.8vw, 38px);
+  background: linear-gradient(180deg, #252525 0%, #1e1e1e 48%, #171717 52%, #1c1c1c 100%);
+  border-radius: clamp(2px, 0.25vw, 4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.typed-cursor {
-  font-weight: 300;
+/* The split-flap seam */
+.vesta-tile::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.025);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.vesta-char {
+  font-family: var(--font-mono), monospace;
+  font-size: clamp(0.45rem, 1vw, 0.95rem);
+  font-weight: 700;
+  color: #f0ece2;
+  text-transform: uppercase;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+  user-select: none;
+}
+
+/* Accent colored characters for the dynamic word */
+.vesta-tile.accent .vesta-char {
   color: var(--accent);
-  animation: blink 1s step-end infinite;
+}
+
+/* Single flap — fast snap like a real split-flap */
+.vesta-tile.flipping {
+  animation: vestaFlap 80ms ease-in forwards;
+}
+
+@keyframes vestaFlap {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(-90deg);
+  }
+}
+
+/* Snap back when class is removed (tile resets) */
+.vesta-tile:not(.flipping) {
+  transition: transform 60ms ease-out;
+  transform: rotateX(0deg);
+}
+
+/* ============================================
+   VESTABOARD — LIGHT THEME
+   ============================================ */
+[data-theme="light"] .vestaboard {
+  background: #e8e8ec;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="light"] .vesta-tile {
+  background: linear-gradient(180deg, #ffffff 0%, #f5f5f7 48%, #ebebee 52%, #f0f0f3 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .vesta-tile::after {
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="light"] .vesta-char {
+  color: #1a1a2e;
 }
 
 .hero-subtitle {

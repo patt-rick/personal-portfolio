@@ -93,6 +93,13 @@ button {
   letter-spacing: -0.03em;
 }
 
+/* Split-flap character spans */
+.flip-char {
+  display: inline-block;
+  transition: transform 80ms ease-out;
+  transform-style: preserve-3d;
+}
+
 .accent {
   color: var(--accent);
 }
