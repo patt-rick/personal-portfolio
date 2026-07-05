@@ -16,30 +16,43 @@
 }
 
 /* ============================================
-   REVEAL ANIMATIONS
+   ANIMATION PRIMING
+   GSAP animates these in; start hidden only when
+   the motion system is active (html.has-motion).
    ============================================ */
-.reveal {
+.has-motion [data-reveal],
+.has-motion [data-intro] {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
+.has-motion [data-title] .word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
 }
 
-/* Skill bar fill animation */
-.skills-showcase.visible .skill-fill {
-  animation: fillBar 1.2s ease forwards;
+.has-motion [data-title] .word > span {
+  display: inline-block;
+  transform: translateY(110%);
 }
 
-@keyframes fillBar {
-  from { width: 0; }
-}
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 
-.projects-grid .reveal:nth-child(2) { transition-delay: 0.1s; }
-.projects-grid .reveal:nth-child(3) { transition-delay: 0.2s; }
-.projects-grid .reveal:nth-child(4) { transition-delay: 0.3s; }
-.projects-grid .reveal:nth-child(5) { transition-delay: 0.4s; }
-.projects-grid .reveal:nth-child(6) { transition-delay: 0.5s; }
+  #webgl {
+    display: none;
+  }
+
+  .preloader {
+    display: none;
+  }
+}

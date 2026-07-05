@@ -3,38 +3,21 @@
    ============================================ */
 .hero {
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
-  overflow: hidden;
-  padding: 120px 24px 80px;
-}
-
-#hero-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.4;
+  padding: calc(var(--nav-height) + 40px) 24px 120px;
+  text-align: center;
 }
 
 .hero-inner {
-  position: relative;
-  z-index: 2;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  width: 100%;
-  gap: 60px;
-}
-
-.hero-content {
-  max-width: 600px;
-  text-align: left;
-  flex: 1;
+  max-width: 1100px;
 }
 
 .hero-badge {
@@ -48,7 +31,8 @@
   font-size: 0.8rem;
   font-weight: 500;
   color: var(--accent);
-  margin-bottom: 32px;
+  margin-bottom: 40px;
+  backdrop-filter: blur(8px);
 }
 
 .status-dot {
@@ -60,32 +44,74 @@
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 7vw, 4.5rem);
-  font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: -0.04em;
-  margin-bottom: 24px;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 10vw, 8.5rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin-bottom: 40px;
 }
 
-.hero-line {
+.hero-title-line {
   display: block;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-.typed-text {
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.hero-title-accent {
+  -webkit-text-stroke: 2px var(--accent);
+  color: transparent;
 }
 
-.typed-cursor {
-  font-weight: 300;
+/* split chars (added by JS) */
+.hero-title .char {
+  display: inline-block;
+  will-change: transform;
+}
+
+.hero-role {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: clamp(1rem, 2.2vw, 1.35rem);
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.hero-role-static {
+  color: var(--text-secondary);
+}
+
+.hero-role-words {
+  position: relative;
+  display: inline-block;
+  min-width: 5.5ch;
+  height: 1.6em;
+  vertical-align: bottom;
+  text-align: left;
+}
+
+.hero-word {
+  position: absolute;
+  left: 0;
+  top: 0;
+  line-height: 1.6;
+  opacity: 0;
+  font-family: var(--font-mono);
+  font-weight: 700;
   color: var(--accent);
-  animation: blink 1s step-end infinite;
+  white-space: nowrap;
+}
+
+.hero-word.is-active {
+  opacity: 1;
 }
 
 .hero-subtitle {
-  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
   color: var(--text-secondary);
   max-width: 560px;
   line-height: 1.7;
@@ -96,151 +122,72 @@
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-  margin-bottom: 64px;
+  justify-content: center;
 }
 
 /* Hero Stats */
 .hero-stats {
+  position: absolute;
+  bottom: 120px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  gap: 48px;
+  gap: clamp(32px, 6vw, 72px);
 }
 
 .stat {
   text-align: center;
 }
 
-.stat-number {
-  font-size: 2.5rem;
+.stat-value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2rem;
   font-weight: 800;
   letter-spacing: -0.03em;
-  display: block;
+  line-height: 1.2;
+}
+
+.stat-number {
+  display: inline-block;
 }
 
 .stat-label {
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 1px;
-}
-
-/* ============================================
-   HERO PHOTO REVEAL
-   ============================================ */
-.hero-photo-wrapper {
-  flex-shrink: 0;
-  position: relative;
-}
-
-/* Squiggle arrow */
-.hero-squiggle {
-  position: absolute;
-  pointer-events: none;
-  z-index: 3;
-  display: flex;
-  align-items: flex-start;
-  gap: 4px;
-}
-
-.hero-squiggle svg {
-  width: 110px;
-  height: auto;
-}
-
-.hero-squiggle-label {
-  font-family: 'Caveat', 'Segoe Script', 'Comic Sans MS', cursive;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--accent);
-  white-space: nowrap;
-}
-
-.hero-squiggle-top {
-  top: -20px;
-  left: -40px;
-  flex-direction: row;
-  align-items: flex-start;
-}
-
-.hero-photo-container {
-  width: 440px;
-  height: 540px;
-  position: relative;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  cursor: none;
-}
-
-.hero-photo-placeholder {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text);
-  pointer-events: none;
-}
-
-.hero-photo-placeholder svg {
-  width: 100%;
-  height: 100%;
-}
-
-.hero-photo {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  -webkit-mask-image: radial-gradient(circle 0px at 50% 50%, black 40%, transparent 100%);
-  mask-image: radial-gradient(circle 0px at 50% 50%, black 40%, transparent 100%);
-}
-
-.hero-photo-hint {
-  position: absolute;
-  z-index: 2;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  color: var(--text-muted);
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  pointer-events: none;
-  transition: opacity 0.5s ease;
-}
-
-.hero-photo-hint svg {
-  opacity: 0.4;
-  animation: pulse-hint 2.5s ease-in-out infinite;
-}
-
-@keyframes pulse-hint {
-  0%, 100% { transform: scale(1); opacity: 0.4; }
-  50% { transform: scale(1.15); opacity: 0.7; }
 }
 
 /* Scroll Indicator */
 .scroll-indicator {
   position: absolute;
-  bottom: 32px;
+  bottom: 28px;
   left: 50%;
   transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 
-.scroll-line {
+.scroll-indicator-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.scroll-indicator-track {
   width: 1px;
-  height: 48px;
-  background: var(--text-muted);
+  height: 44px;
+  background: var(--border-hover);
   position: relative;
   overflow: hidden;
 }
 
-.scroll-line::after {
+.scroll-indicator-dot {
   content: '';
   position: absolute;
   top: -100%;

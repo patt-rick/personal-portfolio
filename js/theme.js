@@ -19,6 +19,7 @@
       const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
+      window.dispatchEvent(new CustomEvent('themechange'));
     });
   }
 
@@ -43,6 +44,7 @@
       root.setAttribute('data-color', color);
       localStorage.setItem('color', color);
       updateActiveDot();
+      window.dispatchEvent(new CustomEvent('themechange'));
     });
   });
 

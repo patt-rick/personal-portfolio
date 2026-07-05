@@ -2,41 +2,57 @@
    RESPONSIVE
    ============================================ */
 @media (max-width: 1024px) {
-  .hero-inner {
-    flex-direction: column;
-    text-align: center;
-    gap: 48px;
-  }
-
-  .hero-content {
-    text-align: center;
-    max-width: 820px;
-  }
-
-  .hero-cta {
-    justify-content: center;
-  }
-
-  .hero-stats {
-    justify-content: center;
-  }
-
-  .hero-photo-container {
-    width: 360px;
-    height: 450px;
-  }
-
   .skills-showcase {
     grid-template-columns: 1fr 1fr;
     gap: 40px 48px;
   }
 
-  .projects-grid {
+  .about-grid {
     grid-template-columns: 1fr;
+    gap: 56px;
   }
 
-  .project-card.featured {
-    grid-column: span 1;
+  .about-photo {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Projects rail stacks vertically (no pin on mobile) */
+  .projects-pin {
+    min-height: 0;
+    overflow: visible;
+    padding-top: 0;
+  }
+
+  .projects {
+    padding: 80px 0;
+  }
+
+  .projects-counter {
+    display: none;
+  }
+
+  .projects-rail {
+    flex-direction: column;
+    gap: 64px;
+    margin-top: 24px;
+  }
+
+  .project-slide {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 28px;
+    padding: 0 24px;
+  }
+
+  .project-visual {
+    max-width: none;
+  }
+
+  .project-content {
+    max-width: none;
   }
 }
 
@@ -57,15 +73,6 @@
     display: none;
   }
 
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .code-window {
-    position: static;
-  }
-
   .skills-showcase {
     grid-template-columns: 1fr;
     gap: 36px;
@@ -80,32 +87,36 @@
   }
 
   .hero-stats {
+    position: static;
+    transform: none;
+    margin-top: 56px;
     gap: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
-  .stat-number {
-    font-size: 2rem;
+  .stat-value {
+    font-size: 1.6rem;
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
+
+  .terminal-mock-sidebar {
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
   .hero {
-    padding: 100px 16px 60px;
-  }
-
-  .hero-photo-container {
-    width: 280px;
-    height: 350px;
-  }
-
-  .hero-stats {
-    flex-direction: column;
-    gap: 16px;
+    padding: calc(var(--nav-height) + 24px) 16px 60px;
   }
 
   .hero-cta {
     flex-direction: column;
     align-items: center;
+    width: 100%;
   }
 
   .btn {
@@ -120,5 +131,9 @@
 
   .section-header {
     margin-bottom: 40px;
+  }
+
+  .about-squiggle {
+    left: 0;
   }
 }

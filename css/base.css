@@ -1,5 +1,5 @@
 /* ============================================
-   RESET & BASE
+   RESET & BASE — tokens, global chrome
    ============================================ */
 *, *::before, *::after {
   margin: 0;
@@ -12,11 +12,14 @@
   --radius-lg: 20px;
   --nav-height: 72px;
   --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Syne', 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-hand: 'Caveat', 'Segoe Script', cursive;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto; /* Lenis drives smooth scrolling */
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -29,6 +32,7 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   cursor: none;
+  transition: background 0.5s ease, color 0.5s ease;
 }
 
 a {
@@ -51,7 +55,25 @@ button {
 
 ::selection {
   background: var(--accent);
-  color: #fff;
+  color: var(--bg);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-card-hover);
+  border-radius: 5px;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 /* ============================================
@@ -64,12 +86,8 @@ button {
 }
 
 .section {
-  padding: 120px 0;
+  padding: clamp(96px, 14vh, 160px) 0;
   position: relative;
-}
-
-.section-dark {
-  background: var(--bg-secondary);
 }
 
 .section-header {
@@ -87,12 +105,96 @@ button {
 }
 
 .section-title {
-  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.4rem);
   font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  max-width: 18ch;
 }
 
 .accent {
   color: var(--accent);
+}
+
+/* ============================================
+   WEBGL BACKDROP
+   ============================================ */
+#webgl {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   PRELOADER
+   ============================================ */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preloader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.preloader-logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2.5rem;
+  letter-spacing: -0.02em;
+}
+
+.preloader-count {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.25em;
+}
+
+.preloader-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--border);
+}
+
+.preloader-bar span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+}
+
+/* ============================================
+   SCROLL PROGRESS
+   ============================================ */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  z-index: 1500;
 }

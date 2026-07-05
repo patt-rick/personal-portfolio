@@ -12,7 +12,7 @@
   justify-content: space-between;
   padding: 0 32px;
   z-index: 1000;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.45s var(--ease-out);
 }
 
 .nav.scrolled {
@@ -22,9 +22,14 @@
   box-shadow: 0 1px 0 var(--border);
 }
 
+.nav.is-hidden {
+  transform: translateY(-100%);
+}
+
 .nav-logo {
+  font-family: var(--font-display);
   font-size: 1.5rem;
-  font-weight: 900;
+  font-weight: 800;
   letter-spacing: -0.02em;
 }
 
@@ -187,6 +192,7 @@
 }
 
 .mobile-link {
+  font-family: var(--font-display);
   font-size: 2rem;
   font-weight: 700;
   color: var(--accent);

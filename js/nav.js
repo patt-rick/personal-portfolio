@@ -5,16 +5,26 @@ const nav = document.getElementById('nav');
 const navToggle = document.getElementById('nav-toggle');
 const mobileMenu = document.getElementById('mobile-menu');
 
-// Scroll effect
+// Scrolled style + hide on scroll down / show on scroll up
+let lastScrollY = window.scrollY;
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 50);
+  const y = window.scrollY;
+  nav.classList.toggle('scrolled', y > 50);
+  if (y > 200 && y > lastScrollY + 4) {
+    nav.classList.add('is-hidden');
+  } else if (y < lastScrollY - 4 || y <= 200) {
+    nav.classList.remove('is-hidden');
+  }
+  lastScrollY = y;
 });
 
 // Mobile toggle
 navToggle.addEventListener('click', () => {
   navToggle.classList.toggle('active');
   mobileMenu.classList.toggle('open');
-  document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  const open = mobileMenu.classList.contains('open');
+  document.body.style.overflow = open ? 'hidden' : '';
+  if (window.__lenis) open ? window.__lenis.stop() : window.__lenis.start();
 });
 
 // Close mobile menu on link click
@@ -23,24 +33,24 @@ document.querySelectorAll('.mobile-link').forEach(link => {
     navToggle.classList.remove('active');
     mobileMenu.classList.remove('open');
     document.body.style.overflow = '';
+    if (window.__lenis) window.__lenis.start();
   });
 });
 
 // Active nav link on scroll
-const sections = document.querySelectorAll('.section, .hero');
+const sections = document.querySelectorAll('.section, .hero, .projects');
 const navLinks = document.querySelectorAll('.nav-link');
 
 function updateActiveNav() {
   let current = '';
   sections.forEach(section => {
-    const top = section.offsetTop - 100;
+    const top = section.offsetTop - 120;
     if (window.scrollY >= top) {
       current = section.getAttribute('id');
     }
   });
 
-  // Fix: detect when user has scrolled to the bottom of the page
-  // so the Contact link highlights even if the section is short
+  // Highlight Contact when scrolled to the very bottom even if the section is short
   if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 2) {
     current = 'contact';
   }
