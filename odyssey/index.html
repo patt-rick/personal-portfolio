@@ -1,0 +1,416 @@
+﻿<!doctype html>
+<html lang="en" data-theme="dark" data-color="purple">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Patrick Ackom | Odyssey</title>
+        <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+        <meta
+            name="description"
+            content="You found it. A 3D flythrough of Patrick Ackom's work — an easter egg dimension of patrickackom.site."
+        />
+        <link rel="canonical" href="https://patrickackom.site/odyssey/" />
+        <meta property="og:title" content="Patrick Ackom | Odyssey" />
+        <meta
+            property="og:description"
+            content="You found it. A 3D flythrough of Patrick Ackom's work."
+        />
+        <meta property="og:url" content="https://patrickackom.site/odyssey/" />
+        <meta property="og:type" content="website" />
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/themes.css" />
+        <link rel="stylesheet" href="css/experience.css" />
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@700;800&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Three.js (ES modules) -->
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+                    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <!-- Preloader -->
+        <div class="preloader" id="preloader">
+            <div class="preloader-inner">
+                <span class="preloader-logo">PA<span class="accent">.</span></span>
+                <div class="preloader-status">
+                    <span id="preloader-label">Initializing</span>
+                    <span id="preloader-count">000</span>
+                </div>
+            </div>
+            <div class="preloader-bar"><span id="preloader-bar-fill"></span></div>
+        </div>
+
+        <!-- Custom Cursor -->
+        <div class="cursor" id="cursor"></div>
+        <div class="cursor-follower" id="cursor-follower"></div>
+
+        <!-- WebGL scene -->
+        <canvas id="scene" aria-hidden="true"></canvas>
+
+        <!-- Navigation -->
+        <header class="nav" id="nav">
+            <a href="#hero" class="nav-logo">PA<span class="accent">.</span></a>
+            <nav class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Work</a>
+                <a href="#experience" class="nav-link">Journey</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            <div class="nav-right">
+                <div class="color-picker" role="group" aria-label="Accent color">
+                    <button class="color-dot" data-color="green" aria-label="Green accent"></button>
+                    <button
+                        class="color-dot"
+                        data-color="orange"
+                        aria-label="Orange accent"
+                    ></button>
+                    <button
+                        class="color-dot"
+                        data-color="purple"
+                        aria-label="Purple accent"
+                    ></button>
+                    <button class="color-dot" data-color="blue" aria-label="Blue accent"></button>
+                    <button class="color-dot" data-color="grey" aria-label="Grey accent"></button>
+                </div>
+                <a href="../" class="nav-exit">Exit</a>
+            </div>
+        </header>
+
+        <!-- Mission HUD -->
+        <aside class="hud" id="hud" aria-hidden="true">
+            <ol class="hud-zones">
+                <li class="hud-zone" data-target="hero"><i></i>Intro</li>
+                <li class="hud-zone" data-target="about"><i></i>About</li>
+                <li class="hud-zone" data-target="skills"><i></i>Skills</li>
+                <li class="hud-zone" data-target="projects"><i></i>Work</li>
+                <li class="hud-zone" data-target="experience"><i></i>Journey</li>
+                <li class="hud-zone" data-target="contact"><i></i>Contact</li>
+            </ol>
+        </aside>
+        <div class="hud-progress" aria-hidden="true">
+            <span id="hud-progress-value">000</span><span class="hud-progress-unit">%</span>
+        </div>
+        <div class="hud-scroll" id="hud-scroll" aria-hidden="true">
+            <span>Scroll to explore</span>
+            <span class="hud-scroll-line"></span>
+        </div>
+
+        <main id="main">
+            <!-- 00 · Intro -->
+            <section class="zone" id="hero" data-zlen="150">
+                <div class="zone-content zone-content-hero">
+                    <p class="hero-eyebrow" data-fade>
+                        <span class="status-dot"></span>
+                        Fullstack Engineer — Web · Mobile · AI
+                    </p>
+                    <!-- rendered in 3D particles when WebGL runs; shown as text otherwise -->
+                    <h1 class="hero-name">Patrick<br />Ackom</h1>
+                    <div class="hero-tag" data-fade>
+                        <p>I build fast, reliable apps. From pixel to production.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 01 · About -->
+            <section class="zone" id="about" data-zlen="140">
+                <div class="zone-content">
+                    <article class="card card-wide" data-fade>
+                        <span class="card-tag">01 / About</span>
+                        <h2 class="card-title">Turning complex problems into elegant solutions</h2>
+                        <p>
+                            I'm a fullstack engineer who enjoys both the design side and the
+                            technical side of building software. Whether it's a web app, a mobile
+                            app, or something with AI, I care about making it feel good to use.
+                        </p>
+                        <p>
+                            The best software is the kind you don't even notice — it just works,
+                            it's fast, and it stays out of your way.
+                        </p>
+                        <div class="card-stats">
+                            <div class="stat">
+                                <span class="stat-number">50+</span>
+                                <span class="stat-label">Projects</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">5+</span>
+                                <span class="stat-label">Years</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">10+</span>
+                                <span class="stat-label">Technologies</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- 02 · Skills -->
+            <section class="zone" id="skills" data-zlen="150">
+                <div class="zone-content">
+                    <article class="card card-wide" data-fade>
+                        <span class="card-tag">02 / Skills</span>
+                        <h2 class="card-title">Tools I work with</h2>
+                        <div class="skill-group">
+                            <h3 class="skill-group-label">Core</h3>
+                            <div class="chips">
+                                <span class="chip chip-hot">TypeScript</span>
+                                <span class="chip chip-hot">React</span>
+                                <span class="chip chip-hot">Next.js</span>
+                                <span class="chip chip-hot">Node.js</span>
+                                <span class="chip">React Native</span>
+                                <span class="chip">Python</span>
+                                <span class="chip">SQL</span>
+                                <span class="chip">Rust</span>
+                            </div>
+                        </div>
+                        <div class="skill-group">
+                            <h3 class="skill-group-label">Platforms & Data</h3>
+                            <div class="chips">
+                                <span class="chip">Firebase</span>
+                                <span class="chip">PostgreSQL</span>
+                                <span class="chip">MongoDB</span>
+                                <span class="chip">GraphQL</span>
+                                <span class="chip">WebSockets</span>
+                                <span class="chip">Vercel</span>
+                                <span class="chip">Expo</span>
+                                <span class="chip">Tauri</span>
+                            </div>
+                        </div>
+                        <div class="skill-group">
+                            <h3 class="skill-group-label">AI</h3>
+                            <div class="chips">
+                                <span class="chip">Claude API</span>
+                                <span class="chip">OpenAI API</span>
+                                <span class="chip">AI Agents</span>
+                                <span class="chip">LLM Integration</span>
+                                <span class="chip">Prompt Engineering</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- 03 · Work — one stop per project -->
+            <section class="zone zone-projects" id="projects">
+                <div class="project-stop" data-side="left">
+                    <div class="zone-content zone-content-split">
+                        <article class="card card-project" data-fade>
+                            <span class="card-tag">03 / Work — 01·05</span>
+                            <div class="ptags">
+                                <span>Rust</span><span>Tauri 2</span><span>React 19</span>
+                            </div>
+                            <h2 class="card-title">Terminal Workspace</h2>
+                            <p>
+                                A multi-project, multi-terminal workspace IDE built with Rust and
+                                Tauri. Terminals that survive navigation, a built-in editor, git
+                                and GitHub tooling, Claude Code session history, and remote access
+                                from your phone.
+                            </p>
+                            <a
+                                href="https://github.com/patt-rick/terminal-workspace-rust"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="card-link"
+                                >View on GitHub →</a
+                            >
+                        </article>
+                    </div>
+                </div>
+                <div class="project-stop" data-side="right">
+                    <div class="zone-content zone-content-split">
+                        <article class="card card-project" data-fade>
+                            <span class="card-tag">03 / Work — 02·05</span>
+                            <div class="ptags">
+                                <span>React</span><span>TypeScript</span><span>Scheduling</span>
+                            </div>
+                            <h2 class="card-title">Class Tablr</h2>
+                            <p>
+                                Timetable assignment tool that streamlines scheduling for
+                                educational institutions — assigning classes and teachers to time
+                                slots with conflict detection.
+                            </p>
+                            <a
+                                href="https://class-tablr.vercel.app/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="card-link"
+                                >Live Demo →</a
+                            >
+                        </article>
+                    </div>
+                </div>
+                <div class="project-stop" data-side="left">
+                    <div class="zone-content zone-content-split">
+                        <article class="card card-project" data-fade>
+                            <span class="card-tag">03 / Work — 03·05</span>
+                            <div class="ptags">
+                                <span>React</span><span>TypeScript</span><span>Tailwind</span>
+                            </div>
+                            <h2 class="card-title">Store Room</h2>
+                            <p>
+                                An inventory management system for stock, orders, and supplies —
+                                see what you have, what's running low, and what needs restocking.
+                            </p>
+                            <a
+                                href="https://storeroom-staging.vercel.app/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="card-link"
+                                >Live Demo →</a
+                            >
+                        </article>
+                    </div>
+                </div>
+                <div class="project-stop" data-side="right">
+                    <div class="zone-content zone-content-split">
+                        <article class="card card-project" data-fade>
+                            <span class="card-tag">03 / Work — 04·05</span>
+                            <div class="ptags">
+                                <span>React</span><span>Firebase</span><span>WebSockets</span>
+                            </div>
+                            <h2 class="card-title">Quick Chat</h2>
+                            <p>
+                                A live chat tool that lets companies talk to their customers in
+                                real time, with an installable library you can drop into any app.
+                            </p>
+                            <a
+                                href="https://live-quickchat.vercel.app/login"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="card-link"
+                                >Live Demo →</a
+                            >
+                        </article>
+                    </div>
+                </div>
+                <div class="project-stop" data-side="left">
+                    <div class="zone-content zone-content-split">
+                        <article class="card card-project" data-fade>
+                            <span class="card-tag">03 / Work — 05·05</span>
+                            <div class="ptags">
+                                <span>React Native</span><span>Node.js</span><span>Expo</span>
+                            </div>
+                            <h2 class="card-title">Finance Tracker</h2>
+                            <p>
+                                A full-featured finance app — log expenses, set budgets and goals,
+                                track everything with graphs. Multiple cashbooks, reminders, and
+                                completely free.
+                            </p>
+                            <a
+                                href="https://play.google.com/store/apps/details?id=com.patrickackom.financetracker"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="card-link"
+                                >Google Play →</a
+                            >
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 04 · Journey -->
+            <section class="zone zone-journey" id="experience">
+                <div class="xp-stop" data-side="left">
+                    <div class="zone-content zone-content-split">
+                        <article class="card card-xp" data-fade>
+                            <span class="card-tag">04 / Journey — 2023 → Now</span>
+                            <h2 class="card-title-sm">Senior Fullstack Engineer</h2>
+                            <p class="card-company">SpringKnights Ltd.</p>
+                            <p>
+                                Building web apps and AI features for clients across the globe.
+                                Critical design and architecture decisions, mentoring junior devs,
+                                shaping technical direction across product teams.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+                <div class="xp-stop" data-side="right">
+                    <div class="zone-content zone-content-split">
+                        <article class="card card-xp" data-fade>
+                            <span class="card-tag">04 / Journey — 2022 → 2023</span>
+                            <h2 class="card-title-sm">Fullstack Developer</h2>
+                            <p class="card-company">Asqii Ltd.</p>
+                            <p>
+                                Clients in education and finance, building full solutions from
+                                scratch. Shipped 20+ major features with a focus on performance
+                                and good UX.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+                <div class="xp-stop" data-side="left">
+                    <div class="zone-content zone-content-split">
+                        <article class="card card-xp" data-fade>
+                            <span class="card-tag">04 / Journey — 2020 → 2021</span>
+                            <h2 class="card-title-sm">Junior Frontend Developer</h2>
+                            <p class="card-company">Detosphere Ltd.</p>
+                            <p>
+                                Responsive websites and email templates. Cut load times by 60%
+                                through code cleanup and optimization.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 05 · Contact -->
+            <section class="zone" id="contact" data-zlen="160">
+                <div class="zone-content">
+                    <div class="contact-block" data-fade>
+                        <span class="card-tag">05 / Contact</span>
+                        <h2 class="contact-title">Let's work<br />together</h2>
+                        <p class="contact-sub">
+                            Got a project in mind or just want to chat? Drop me a line.
+                        </p>
+                        <a href="mailto:patrickackom003@gmail.com" class="contact-cta" data-hover
+                            >patrickackom003@gmail.com</a
+                        >
+                        <div class="contact-links">
+                            <a
+                                href="https://github.com/patt-rick"
+                                target="_blank"
+                                rel="noopener"
+                                data-hover
+                                >GitHub</a
+                            >
+                            <a
+                                href="https://www.linkedin.com/in/patrick-ackom"
+                                target="_blank"
+                                rel="noopener"
+                                data-hover
+                                >LinkedIn</a
+                            >
+                        </div>
+                        <p class="contact-footer">
+                            Designed &amp; Built by Patrick Ackom · © 2026 ·
+                            <a href="../" class="contact-return">Return to reality →</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- JS -->
+        <script src="js/theme.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+        <script src="js/cursor.js" defer></script>
+        <script src="js/ui.js" defer></script>
+        <script src="js/experience.js" type="module"></script>
+    </body>
+</html>
