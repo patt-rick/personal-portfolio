@@ -129,9 +129,10 @@
 .hero-stats {
   position: absolute;
   bottom: 120px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   display: flex;
+  justify-content: center;
   gap: clamp(32px, 6vw, 72px);
 }
 
@@ -163,8 +164,8 @@
 .scroll-indicator {
   position: absolute;
   bottom: 28px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
