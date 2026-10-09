@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="875" viewBox="0 0 1400 875">
+  <rect width="1400" height="875" fill="#16171d"/>
+  <rect width="1400" height="56" fill="#1f2029"/>
+  <circle cx="34" cy="28" r="9" fill="#ff5f57"/>
+  <circle cx="62" cy="28" r="9" fill="#febc2e"/>
+  <circle cx="90" cy="28" r="9" fill="#28c840"/>
+  <text x="700" y="35" fill="#8a8ca0" font-family="Consolas, Menlo, monospace" font-size="20" text-anchor="middle">terminal-workspace</text>
+  <rect y="56" width="300" height="819" fill="#1b1c24"/>
+  <g font-family="Consolas, Menlo, monospace" font-size="24">
+    <text x="36" y="118" fill="#8a8ca0">PROJECTS</text>
+    <rect x="20" y="146" width="262" height="48" rx="6" fill="#2a2c3a"/>
+    <text x="36" y="178" fill="#f2f3f7">personal-site</text>
+    <text x="36" y="238" fill="#b9bbcc">amc-front</text>
+    <circle cx="258" cy="230" r="6" fill="#28c840"/>
+    <text x="36" y="290" fill="#b9bbcc">arij</text>
+    <text x="36" y="342" fill="#b9bbcc">wterm-rs</text>
+    <text x="36" y="394" fill="#b9bbcc">class-tablr</text>
+  </g>
+  <g font-family="Consolas, Menlo, monospace" font-size="27">
+    <text x="344" y="130" fill="#f2f3f7"><tspan fill="#28c840">➜</tspan>  cargo build --release</text>
+    <text x="344" y="182" fill="#8a8ca0">   Compiling terminal-workspace v0.9.0</text>
+    <text x="344" y="234" fill="#8a8ca0">   Compiling tauri v2.1.1</text>
+    <text x="344" y="286" fill="#28c840">    Finished `release` profile in 42.3s</text>
+    <text x="344" y="362" fill="#f2f3f7"><tspan fill="#28c840">➜</tspan>  git status --short</text>
+    <text x="344" y="414" fill="#febc2e">   M src/pty/session.rs</text>
+    <text x="344" y="466" fill="#febc2e">   M ui/src/Workspace.tsx</text>
+    <text x="344" y="542" fill="#f2f3f7"><tspan fill="#28c840">➜</tspan>  claude --resume</text>
+    <text x="344" y="594" fill="#8a8ca0">   Resuming session from yesterday…</text>
+    <text x="344" y="670" fill="#f2f3f7"><tspan fill="#28c840">➜</tspan></text>
+    <rect x="392" y="648" width="15" height="30" fill="#f2f3f7"/>
+  </g>
+  <rect x="300" y="815" width="1100" height="60" fill="#1f2029"/>
+  <g font-family="Consolas, Menlo, monospace" font-size="20" fill="#8a8ca0">
+    <text x="330" y="852">zsh</text>
+    <text x="420" y="852">cargo</text>
+    <text x="530" y="852">claude</text>
+    <text x="1370" y="852" text-anchor="end">main ↑2</text>
+  </g>
+</svg>

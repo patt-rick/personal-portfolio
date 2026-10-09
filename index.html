@@ -1,889 +1,293 @@
 <!doctype html>
-<html lang="en" data-theme="dark" data-color="grey">
+<html lang="en" data-theme="light">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Patrick Ackom | Fullstack Engineer</title>
+        <title>Patrick Ackom, fullstack engineer</title>
         <link rel="icon" href="favicon.svg" type="image/svg+xml" />
         <meta
             name="description"
-            content="Patrick Ackom - Fullstack Engineer specializing in React, TypeScript, Node.js, AI/ML, and Mobile Development"
+            content="Patrick Ackom builds apps for the web, phones and desktops with React, TypeScript, Node.js, React Native and Rust."
         />
         <link rel="canonical" href="https://patrickackom.site/" />
-        <meta property="og:title" content="Patrick Ackom | Fullstack Engineer" />
+        <meta property="og:title" content="Patrick Ackom, fullstack engineer" />
         <meta
             property="og:description"
-            content="Fullstack engineer building fast, reliable apps for web, mobile, and AI. From pixel to production."
+            content="Apps for the web, phones and desktops, and lately the terminal I write them in."
         />
         <meta property="og:url" content="https://patrickackom.site/" />
         <meta property="og:type" content="website" />
+        <meta name="theme-color" content="#2f36e0" />
 
-        <!-- CSS -->
-        <link rel="stylesheet" href="css/base.css" />
-        <link rel="stylesheet" href="css/themes.css" />
-        <link rel="stylesheet" href="css/components.css" />
-        <link rel="stylesheet" href="css/nav.css" />
-        <link rel="stylesheet" href="css/hero.css" />
-        <link rel="stylesheet" href="css/sections.css" />
-        <link rel="stylesheet" href="css/animations.css" />
-        <link rel="stylesheet" href="css/responsive.css" />
+        <!-- Theme before paint -->
+        <script>
+            (function () {
+                var t = null;
+                try { t = localStorage.getItem('theme'); } catch (e) {}
+                if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', t);
+                document.documentElement.classList.add('js');
+                if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    document.documentElement.classList.add('motion');
+                    // If the intro hasn't started in 3.5s (slow CDN, script error), show the page as is.
+                    setTimeout(function () {
+                        if (!window.__introStarted) document.documentElement.classList.remove('motion');
+                    }, 3500);
+                }
+            })();
+        </script>
 
-        <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@700;800&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap"
             rel="stylesheet"
         />
-
-        <!-- Three.js (ES module) -->
-        <script type="importmap">
-            {
-                "imports": {
-                    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"
-                }
-            }
-        </script>
+        <link rel="preload" as="image" href="img/me-1200.webp" imagesrcset="img/me-700.webp 700w, img/me-1200.webp 1200w" imagesizes="(max-width: 700px) 92vw, 46vw" fetchpriority="high" />
+        <link rel="stylesheet" href="css/site.css" />
     </head>
     <body>
-        <!-- Preloader -->
-        <div class="preloader" id="preloader">
-            <div class="preloader-inner">
-                <span class="preloader-logo">PA<span class="accent">.</span></span>
-                <span class="preloader-count" id="preloader-count">00</span>
-            </div>
-            <div class="preloader-bar"><span id="preloader-bar-fill"></span></div>
-        </div>
-
-        <!-- Scroll progress -->
-        <div class="scroll-progress" id="scroll-progress"></div>
-
-        <!-- Custom Cursor -->
-        <div class="cursor" id="cursor"></div>
-        <div class="cursor-follower" id="cursor-follower"></div>
-
-        <!-- WebGL backdrop -->
-        <canvas id="webgl" aria-hidden="true"></canvas>
-
-        <!-- Navigation -->
-        <nav class="nav" id="nav">
-            <a href="#hero" class="nav-logo">PA<span class="accent">.</span></a>
-            <div class="nav-links">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#experience" class="nav-link">Experience</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-            <div class="nav-controls">
-                <div class="color-picker">
-                    <button class="color-dot" data-color="green" aria-label="Green theme"></button>
-                    <button
-                        class="color-dot"
-                        data-color="orange"
-                        aria-label="Orange theme"
-                    ></button>
-                    <button
-                        class="color-dot"
-                        data-color="purple"
-                        aria-label="Purple theme"
-                    ></button>
-                    <button class="color-dot" data-color="blue" aria-label="Blue theme"></button>
-                    <button class="color-dot" data-color="grey" aria-label="Grey theme"></button>
-                </div>
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
-                    <svg
-                        class="icon-sun"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                        <circle cx="12" cy="12" r="5" />
-                        <line x1="12" y1="1" x2="12" y2="3" />
-                        <line x1="12" y1="21" x2="12" y2="23" />
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                        <line x1="1" y1="12" x2="3" y2="12" />
-                        <line x1="21" y1="12" x2="23" y2="12" />
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-                    </svg>
-                    <svg
-                        class="icon-moon"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                    </svg>
-                </button>
-                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </nav>
-
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobile-menu">
-            <a href="#about" class="mobile-link">About</a>
-            <a href="#skills" class="mobile-link">Skills</a>
-            <a href="#projects" class="mobile-link">Projects</a>
-            <a href="#experience" class="mobile-link">Experience</a>
-            <a href="#contact" class="mobile-link">Contact</a>
-            <div class="mobile-color-picker">
-                <button class="color-dot" data-color="green" aria-label="Green theme"></button>
-                <button class="color-dot" data-color="orange" aria-label="Orange theme"></button>
-                <button class="color-dot" data-color="purple" aria-label="Purple theme"></button>
-                <button class="color-dot" data-color="blue" aria-label="Blue theme"></button>
-                <button class="color-dot" data-color="grey" aria-label="Grey theme"></button>
-            </div>
-        </div>
+        <a class="skip" href="#main">Skip to content</a>
 
         <main id="main">
-            <!-- Hero -->
-            <section class="hero" id="hero" data-shape="sphere">
-                <div class="hero-inner">
-                    <div class="hero-badge" data-intro>
-                        <span class="status-dot"></span>
-                        Available for opportunities
-                    </div>
-                    <h1 class="hero-title">
-                        <span class="hero-title-line"><span data-split>Patrick</span></span>
-                        <span class="hero-title-line hero-title-accent"
-                            ><span data-split>Ackom</span></span
-                        >
+            <!-- ===== Poster ===== -->
+            <section class="hero" id="top" aria-labelledby="name">
+                <div class="poster" id="poster">
+                    <nav class="nav" aria-label="Main">
+                        <a href="#top" class="nav-mark" aria-label="Patrick Ackom, back to top">PA</a>
+                        <ul class="nav-links">
+                            <li><a href="#work">Work</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li class="nav-hide-sm"><a href="#experience">Experience</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                        <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">
+                            Lights off
+                        </button>
+                    </nav>
+
+                    <h1 class="name" id="name">
+                        <span class="name-line name-line--back"><span class="name-inner">Patrick</span></span>
+                        <span class="name-line name-line--front"><span class="name-inner">Ackom</span></span>
                     </h1>
-                    <div class="hero-role" data-intro>
-                        <span class="hero-role-static">Fullstack engineer building for the</span>
-                        <span class="hero-role-words" id="hero-words">
-                            <span class="hero-word is-active">web</span>
-                            <span class="hero-word">mobile</span>
-                            <span class="hero-word">AI</span>
-                            <span class="hero-word">future</span>
-                        </span>
+
+                    <div class="portrait" id="portrait">
+                        <picture>
+                            <source
+                                type="image/webp"
+                                srcset="img/me-700.webp 700w, img/me-1200.webp 1200w"
+                                sizes="(max-width: 700px) 92vw, 46vw"
+                            />
+                            <img
+                                src="me.png"
+                                width="1640"
+                                height="2058"
+                                alt="Patrick Ackom, arms crossed, wearing a grey shirt and a wristwatch"
+                                fetchpriority="high"
+                                decoding="async"
+                                id="portrait-img"
+                            />
+                        </picture>
+                        <button class="watch" id="watch" type="button">
+                            <span class="sr-only">Look at the watch. There's a door at the bottom of this page.</span>
+                            <span class="watch-tip" aria-hidden="true">There's a door at the bottom of this page.</span>
+                        </button>
                     </div>
-                    <p class="hero-subtitle" data-intro>
-                        I build fast, reliable apps for web, mobile, and AI.<br />
-                        From pixel to production.
+
+                    <p class="hero-line">
+                        Fullstack engineer. I make apps for the web, phones and desktops, and lately
+                        I'm building the terminal I write them in.
                     </p>
-                    <div class="hero-cta" data-intro>
-                        <a href="#projects" class="btn btn-primary" data-hover>View My Work</a>
-                        <a href="#contact" class="btn btn-outline" data-hover>Get In Touch</a>
-                    </div>
-                </div>
-                <div class="hero-stats" data-intro>
-                    <div class="stat">
-                        <span class="stat-value"
-                            ><span class="stat-number" data-target="50">0</span
-                            ><span class="accent">+</span></span
-                        >
-                        <span class="stat-label">Projects Delivered</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value"
-                            ><span class="stat-number" data-target="5">0</span
-                            ><span class="accent">+</span></span
-                        >
-                        <span class="stat-label">Years Experience</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value"
-                            ><span class="stat-number" data-target="10">0</span
-                            ><span class="accent">+</span></span
-                        >
-                        <span class="stat-label">Technologies</span>
-                    </div>
-                </div>
-                <div class="scroll-indicator" data-intro>
-                    <span class="scroll-indicator-label">Scroll</span>
-                    <span class="scroll-indicator-track"><span class="scroll-indicator-dot"></span></span>
                 </div>
             </section>
 
-            <!-- About -->
-            <section class="section" id="about" data-shape="wave">
-                <div class="container">
-                    <div class="section-header">
-                        <span class="section-tag" data-reveal>01 / About</span>
-                        <h2 class="section-title" data-title>
-                            Turning complex problems into elegant solutions
-                        </h2>
-                    </div>
-                    <div class="about-grid">
-                        <div class="about-text">
-                            <p data-reveal>
-                                I'm a fullstack engineer who enjoys both the design side and the
-                                technical side of building software. Whether it's a web app, a
-                                mobile app, or something with AI, I care about making it feel good
-                                to use.
-                            </p>
-                            <p data-reveal>
-                                I think the best software is the kind you don't even notice. It
-                                just works, it's fast, and it stays out of your way.
-                            </p>
-                            <p data-reveal>
-                                Outside of work, I like picking up new tools and technologies,
-                                contributing to open source, and seeing how far I can push what's
-                                possible on the web.
-                            </p>
-                            <div class="about-highlights">
-                                <div class="highlight" data-reveal>
-                                    <div class="highlight-icon">
-                                        <svg
-                                            width="24"
-                                            height="24"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                        >
-                                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h4>Fast & Performant</h4>
-                                        <p>
-                                            I keep things snappy from the frontend all the way to
-                                            the database.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="highlight" data-reveal>
-                                    <div class="highlight-icon">
-                                        <svg
-                                            width="24"
-                                            height="24"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                        >
-                                            <rect x="2" y="3" width="20" height="14" rx="2" />
-                                            <path d="M8 21h8M12 17v4" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h4>Responsive & Accessible</h4>
-                                        <p>Looks right on any screen and works for everyone.</p>
-                                    </div>
-                                </div>
-                                <div class="highlight" data-reveal>
-                                    <div class="highlight-icon">
-                                        <svg
-                                            width="24"
-                                            height="24"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                        >
-                                            <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                                            <path d="M2 17l10 5 10-5" />
-                                            <path d="M2 12l10 5 10-5" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h4>Scalable Architecture</h4>
-                                        <p>
-                                            Clean code and solid patterns so things don't fall
-                                            apart as they grow.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="about-photo" data-reveal>
-                            <div class="about-squiggle">
-                                <svg
-                                    viewBox="0 0 120 80"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        d="M8 8 C20 12, 28 28, 40 24 S60 8, 75 18 S95 40, 105 55 L100 70"
-                                        stroke="var(--accent)"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        fill="none"
-                                    />
-                                    <path
-                                        d="M95 65 L100 70 L105 63"
-                                        stroke="var(--accent)"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        fill="none"
-                                    />
-                                </svg>
-                                <span class="about-squiggle-label">me!</span>
-                            </div>
-                            <div class="about-photo-frame" id="about-photo-frame">
-                                <img src="me.png" alt="Patrick Ackom" class="about-photo-img" />
-                            </div>
-                        </div>
-                    </div>
+            <!-- ===== About ===== -->
+            <section class="about wrap" id="about" aria-labelledby="about-title">
+                <h2 class="sr-only" id="about-title">About</h2>
+                <p class="statement">
+                    I like software you don't notice. It opens fast, does what you meant, and gets
+                    out of your way. Getting there takes both halves of the job, the design and the
+                    plumbing, and I enjoy both.
+                </p>
+                <div class="about-cols">
+                    <p>
+                        Most of my days are TypeScript: React and Next.js on the front, Node.js and
+                        Postgres or Firebase behind it, React Native and Expo when it has to live on a
+                        phone. More and more of it involves language models, wired into products
+                        through the OpenAI and Claude APIs.
+                    </p>
+                    <p>
+                        Outside client work I build tools for myself, which is how I ended up
+                        writing a terminal workspace in Rust. I also read a lot
+                        of other people's source code, and sometimes send a fix back.
+                    </p>
                 </div>
             </section>
 
-            <!-- Skills -->
-            <section class="section" id="skills" data-shape="lattice">
-                <div class="container">
-                    <div class="section-header">
-                        <span class="section-tag" data-reveal>02 / Skills</span>
-                        <h2 class="section-title" data-title>Tools I work with</h2>
-                    </div>
-                    <div class="skills-showcase">
-                        <div class="skills-column" data-reveal>
-                            <div class="skills-column-label">
-                                <span class="skills-label-dot"></span>
-                                Languages
-                            </div>
-                            <div class="skills-items">
-                                <div class="skill-item">
-                                    <span class="skill-name">TypeScript</span>
-                                    <span class="skill-bar"
-                                        ><span class="skill-fill" data-level="95"></span
-                                    ></span>
-                                </div>
-                                <div class="skill-item">
-                                    <span class="skill-name">JavaScript</span>
-                                    <span class="skill-bar"
-                                        ><span class="skill-fill" data-level="95"></span
-                                    ></span>
-                                </div>
-                                <div class="skill-item">
-                                    <span class="skill-name">Python</span>
-                                    <span class="skill-bar"
-                                        ><span class="skill-fill" data-level="70"></span
-                                    ></span>
-                                </div>
-                                <div class="skill-item">
-                                    <span class="skill-name">HTML / CSS</span>
-                                    <span class="skill-bar"
-                                        ><span class="skill-fill" data-level="95"></span
-                                    ></span>
-                                </div>
-                                <div class="skill-item">
-                                    <span class="skill-name">SQL</span>
-                                    <span class="skill-bar"
-                                        ><span class="skill-fill" data-level="75"></span
-                                    ></span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="skills-column" data-reveal>
-                            <div class="skills-column-label">
-                                <span class="skills-label-dot"></span>
-                                Frameworks & Libraries
-                            </div>
-                            <div class="skills-cloud">
-                                <span class="skill-chip skill-chip-lg" data-hover>React</span>
-                                <span class="skill-chip skill-chip-lg" data-hover>Next.js</span>
-                                <span class="skill-chip skill-chip-md" data-hover
-                                    >React Native</span
-                                >
-                                <span class="skill-chip skill-chip-md" data-hover>Node.js</span>
-                                <span class="skill-chip skill-chip-md" data-hover>Express</span>
-                                <span class="skill-chip skill-chip-sm" data-hover
-                                    >Tailwind CSS</span
-                                >
-                                <span class="skill-chip skill-chip-sm" data-hover>Redux</span>
-                                <span class="skill-chip skill-chip-sm" data-hover>Expo</span>
-                                <span class="skill-chip skill-chip-sm" data-hover>Vue.js</span>
-                                <span class="skill-chip skill-chip-sm" data-hover>GraphQL</span>
-                                <span class="skill-chip skill-chip-sm" data-hover>Chart.js</span>
-                                <span class="skill-chip skill-chip-sm" data-hover>SCSS</span>
-                            </div>
-                        </div>
-
-                        <div class="skills-column" data-reveal>
-                            <div class="skills-column-label">
-                                <span class="skills-label-dot"></span>
-                                Tools & Platforms
-                            </div>
-                            <div class="skills-cloud">
-                                <span class="skill-chip skill-chip-md" data-hover>Firebase</span>
-                                <span class="skill-chip skill-chip-md" data-hover>PostgreSQL</span>
-                                <span class="skill-chip skill-chip-md" data-hover>MongoDB</span>
-                                <span class="skill-chip skill-chip-sm" data-hover>Git / GitHub</span>
-                                <span class="skill-chip skill-chip-sm" data-hover>REST APIs</span>
-                                <span class="skill-chip skill-chip-sm" data-hover>WebSockets</span>
-                                <span class="skill-chip skill-chip-sm" data-hover>Vercel</span>
-                                <span class="skill-chip skill-chip-sm" data-hover>Figma</span>
-                            </div>
-                        </div>
-
-                        <div class="skills-column" data-reveal>
-                            <div class="skills-column-label">
-                                <span class="skills-label-dot"></span>
-                                AI & Other
-                            </div>
-                            <div class="skills-cloud">
-                                <span class="skill-chip skill-chip-md" data-hover>OpenAI API</span>
-                                <span class="skill-chip skill-chip-md" data-hover>Claude API</span>
-                                <span class="skill-chip skill-chip-sm" data-hover
-                                    >LLM Integration</span
-                                >
-                                <span class="skill-chip skill-chip-sm" data-hover
-                                    >Prompt Engineering</span
-                                >
-                                <span class="skill-chip skill-chip-sm" data-hover>AI Agents</span>
-                                <span class="skill-chip skill-chip-sm" data-hover
-                                    >System Design</span
-                                >
-                                <span class="skill-chip skill-chip-sm" data-hover>UI/UX Design</span>
-                                <span class="skill-chip skill-chip-sm" data-hover>Testing</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Projects (horizontal rail) -->
-            <section class="projects" id="projects" data-shape="knot">
-                <div class="projects-pin" id="projects-pin">
-                    <div class="projects-head">
-                        <div class="container projects-head-inner">
-                            <div>
-                                <span class="section-tag" data-reveal>03 / Projects</span>
-                                <h2 class="section-title" data-title>Some things I've built</h2>
-                            </div>
-                            <div class="projects-counter" aria-hidden="true">
-                                <span id="projects-counter-current">01</span>
-                                <span class="projects-counter-sep"></span>
-                                <span>05</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="projects-rail" id="projects-rail">
-                        <article class="project-slide">
-                            <div class="project-visual project-visual-terminal">
-                                <div class="terminal-mock" aria-hidden="true">
-                                    <div class="terminal-mock-header">
-                                        <span class="terminal-mock-dot red"></span>
-                                        <span class="terminal-mock-dot yellow"></span>
-                                        <span class="terminal-mock-dot green"></span>
-                                        <span class="terminal-mock-title"
-                                            >terminal-workspace — zsh</span
-                                        >
-                                    </div>
-                                    <div class="terminal-mock-body">
-                                        <div class="terminal-mock-sidebar">
-                                            <span class="tm-project is-active">personal-site</span>
-                                            <span class="tm-project">amc-front <i></i></span>
-                                            <span class="tm-project">arij</span>
-                                            <span class="tm-project">wterm-rs</span>
-                                        </div>
-                                        <div class="terminal-mock-main">
-                                            <p><span class="tm-prompt">➜</span> cargo build --release</p>
-                                            <p class="tm-dim">Compiling terminal-workspace v0.9.0</p>
-                                            <p class="tm-ok">Finished `release` in 42.3s</p>
-                                            <p><span class="tm-prompt">➜</span> claude --resume</p>
-                                            <p class="tm-dim">Resuming session…</p>
-                                            <p>
-                                                <span class="tm-prompt">➜</span
-                                                ><span class="tm-cursor"></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-content">
-                                <div class="project-tags">
-                                    <span>Rust</span><span>Tauri 2</span><span>React 19</span
-                                    ><span>TypeScript</span>
-                                </div>
-                                <h3 class="project-title">Terminal Workspace</h3>
-                                <p class="project-desc">
-                                    A multi-project, multi-terminal workspace IDE built with Rust
-                                    and Tauri. Terminals that survive navigation, a built-in
-                                    editor, git and GitHub tooling, Claude Code session history,
-                                    and remote access from your phone.
-                                </p>
-                                <div class="project-links">
-                                    <a
-                                        href="https://github.com/patt-rick/terminal-workspace-rust"
-                                        class="project-link"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        data-hover
-                                    >
-                                        <svg
-                                            width="18"
-                                            height="18"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                        >
-                                            <path
-                                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-                                            />
-                                        </svg>
-                                        View on GitHub
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="project-slide">
-                            <div class="project-visual">
-                                <img src="tt.png" alt="Class Tablr" data-parallax />
-                            </div>
-                            <div class="project-content">
-                                <div class="project-tags">
-                                    <span>React</span><span>TypeScript</span><span>Scheduling</span>
-                                </div>
-                                <h3 class="project-title">Class Tablr</h3>
-                                <p class="project-desc">
-                                    Timetable assignment tool that streamlines scheduling for
-                                    educational institutions. Hastens the process of assigning
-                                    classes, teachers to time slots with conflict detection.
-                                </p>
-                                <div class="project-links">
-                                    <a
-                                        href="https://class-tablr.vercel.app/"
-                                        class="project-link"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        data-hover
-                                    >
-                                        <svg
-                                            width="18"
-                                            height="18"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                        >
-                                            <path
-                                                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                                            />
-                                            <polyline points="15 3 21 3 21 9" />
-                                            <line x1="10" y1="14" x2="21" y2="3" />
-                                        </svg>
-                                        Live Demo
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="project-slide">
-                            <div class="project-visual">
-                                <img src="sr.png" alt="Store Room" data-parallax />
-                            </div>
-                            <div class="project-content">
-                                <div class="project-tags">
-                                    <span>React</span><span>TypeScript</span><span>Tailwind</span>
-                                </div>
-                                <h3 class="project-title">Store Room</h3>
-                                <p class="project-desc">
-                                    An inventory management system for keeping track of stock,
-                                    orders, and supplies. Makes it easy to see what you have,
-                                    what's running low, and what needs restocking.
-                                </p>
-                                <div class="project-links">
-                                    <a
-                                        href="https://storeroom-staging.vercel.app/"
-                                        class="project-link"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        data-hover
-                                    >
-                                        <svg
-                                            width="18"
-                                            height="18"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                        >
-                                            <path
-                                                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                                            />
-                                            <polyline points="15 3 21 3 21 9" />
-                                            <line x1="10" y1="14" x2="21" y2="3" />
-                                        </svg>
-                                        Live Demo
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="project-slide">
-                            <div class="project-visual">
-                                <img src="qc.png" alt="Quick Chat" data-parallax />
-                            </div>
-                            <div class="project-content">
-                                <div class="project-tags">
-                                    <span>React</span><span>Firebase</span><span>WebSockets</span
-                                    ><span>npm</span>
-                                </div>
-                                <h3 class="project-title">Quick Chat</h3>
-                                <p class="project-desc">
-                                    A live chat tool that lets companies talk to their customers
-                                    in real time. It also comes with an installable library you
-                                    can drop into any app to enable chat support right away.
-                                </p>
-                                <div class="project-links">
-                                    <a
-                                        href="https://live-quickchat.vercel.app/login"
-                                        class="project-link"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        data-hover
-                                    >
-                                        <svg
-                                            width="18"
-                                            height="18"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                        >
-                                            <path
-                                                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                                            />
-                                            <polyline points="15 3 21 3 21 9" />
-                                            <line x1="10" y1="14" x2="21" y2="3" />
-                                        </svg>
-                                        Live Demo
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="project-slide">
-                            <div class="project-visual">
-                                <img src="fa.jpeg" alt="Finance Tracker App" data-parallax />
-                            </div>
-                            <div class="project-content">
-                                <div class="project-tags">
-                                    <span>React Native</span><span>Node.js</span><span>Expo</span
-                                    ><span>Chart.js</span>
-                                </div>
-                                <h3 class="project-title">Finance Tracker App</h3>
-                                <p class="project-desc">
-                                    A full-featured finance app where you can log expenses, set
-                                    budgets and goals, create custom categories, and track
-                                    everything with graphs. Supports multiple cashbooks, reminders,
-                                    and it's completely free.
-                                </p>
-                                <div class="project-links">
-                                    <a
-                                        href="https://play.google.com/store/apps/details?id=com.patrickackom.financetracker"
-                                        class="project-link"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        data-hover
-                                    >
-                                        <svg
-                                            width="18"
-                                            height="18"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                        >
-                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                                            <polyline points="7 10 12 15 17 10" />
-                                            <line x1="12" y1="15" x2="12" y2="3" />
-                                        </svg>
-                                        Download
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Experience -->
-            <section class="section" id="experience" data-shape="helix">
-                <div class="container">
-                    <div class="section-header">
-                        <span class="section-tag" data-reveal>04 / Experience</span>
-                        <h2 class="section-title" data-title>Work experience</h2>
-                    </div>
-                    <div class="timeline" id="timeline">
-                        <div class="timeline-line" aria-hidden="true">
-                            <span class="timeline-line-fill" id="timeline-line-fill"></span>
-                        </div>
-                        <div class="timeline-item" data-reveal>
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-content">
-                                <span class="timeline-date">2023 - Present</span>
-                                <h3 class="timeline-title">Senior Fullstack Engineer</h3>
-                                <p class="timeline-company">SpringKnights Ltd.</p>
-                                <p class="timeline-desc">
-                                    Building fully functional web apps and AI features for clients
-                                    across the globe. I make critical design and architectural
-                                    decisions and also mentor junior devs and help shape technical
-                                    direction across product teams.
-                                </p>
-                                <div class="timeline-tags">
-                                    <span>React</span><span>TypeScript</span><span>Node.js</span
-                                    ><span>AI/ML</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="timeline-item" data-reveal>
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-content">
-                                <span class="timeline-date">2022 - 2023</span>
-                                <h3 class="timeline-title">Fullstack Developer</h3>
-                                <p class="timeline-company">Asqii Ltd.</p>
-                                <p class="timeline-desc">
-                                    Worked with clients in education and finance, building full
-                                    solutions from scratch. Shipped 20+ major features with a focus
-                                    on performance and good UX to improve user work efficiency and
-                                    retention.
-                                </p>
-                                <div class="timeline-tags">
-                                    <span>React</span><span>Node.js</span><span>MySQL</span
-                                    ><span>Git</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="timeline-item" data-reveal>
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-content">
-                                <span class="timeline-date">2020 - 2021</span>
-                                <h3 class="timeline-title">Junior Frontend Developer</h3>
-                                <p class="timeline-company">Detosphere Ltd. (Startup)</p>
-                                <p class="timeline-desc">
-                                    Built responsive websites and email templates. Managed to cut
-                                    load times by 60% through code cleanup and optimization. Helped
-                                    with manual testing of other projects.
-                                </p>
-                                <div class="timeline-tags">
-                                    <span>HTML</span><span>JavaScript</span><span>CSS</span
-                                    ><span>Firebase</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Contact -->
-            <section class="section section-contact" id="contact" data-shape="ring">
-                <div class="container">
-                    <div class="contact-wrapper">
-                        <div class="section-header">
-                            <span class="section-tag" data-reveal>05 / Contact</span>
-                            <h2 class="section-title contact-title" data-title>
-                                Let's work together
-                            </h2>
-                            <p class="contact-subtitle" data-reveal>
-                                Got a project in mind or just want to chat? I'm always happy to
-                                hear about new ideas and opportunities. Drop me a line.
-                            </p>
-                        </div>
-                        <div class="contact-grid">
-                            <a
-                                href="mailto:patrickackom003@gmail.com"
-                                class="contact-card"
-                                data-reveal
-                                data-hover
-                            >
-                                <svg
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                >
-                                    <path
-                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-                                    />
-                                    <polyline points="22,6 12,13 2,6" />
-                                </svg>
-                                <span class="contact-label">Email</span>
-                                <span class="contact-value">patrickackom003@gmail.com</span>
+            <!-- ===== Work ===== -->
+            <section class="work wrap" id="work" aria-labelledby="work-title">
+                <h2 class="section-title" id="work-title">Selected work</h2>
+                <div class="work-grid">
+                    <ul class="work-list" id="work-list">
+                        <li class="work-item is-active" data-img="img/terminal.svg">
+                            <a class="work-link" href="https://github.com/patt-rick/terminal-workspace-rust" target="_blank" rel="noopener noreferrer">
+                                <span class="work-name">Terminal Workspace</span>
+                                <span class="work-meta">
+                                    <span class="work-kind">Desktop app, open source</span>
+                                    <span class="work-stack">Rust, Tauri 2, React 19, TypeScript</span>
+                                </span>
                             </a>
-                            <a
-                                href="https://github.com/patt-rick"
-                                target="_blank"
-                                rel="noopener"
-                                class="contact-card"
-                                data-reveal
-                                data-hover
-                            >
-                                <svg
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                >
-                                    <path
-                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-                                    />
-                                </svg>
-                                <span class="contact-label">GitHub</span>
-                                <span class="contact-value">github.com/patt-rick</span>
+                            <p class="work-desc">
+                                A workspace for juggling many projects and terminals at once. Terminals
+                                keep running when you switch away, and it has an editor, git and GitHub
+                                tools, Claude Code session history, and remote access from your phone.
+                            </p>
+                            <span class="thumb-field"><img class="work-thumb" src="img/terminal.svg" alt="" width="1400" height="875" loading="lazy" /></span>
+                        </li>
+                        <li class="work-item is-light" data-img="img/tt.webp">
+                            <a class="work-link" href="https://class-tablr.vercel.app/" target="_blank" rel="noopener noreferrer">
+                                <span class="work-name">Class Tablr</span>
+                                <span class="work-meta">
+                                    <span class="work-kind">Web app</span>
+                                    <span class="work-stack">React, TypeScript</span>
+                                </span>
                             </a>
-                            <a
-                                href="https://www.linkedin.com/in/patrick-ackom"
-                                target="_blank"
-                                rel="noopener"
-                                class="contact-card"
-                                data-reveal
-                                data-hover
-                            >
-                                <svg
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                >
-                                    <path
-                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
-                                    />
-                                    <rect x="2" y="9" width="4" height="12" />
-                                    <circle cx="4" cy="4" r="2" />
-                                </svg>
-                                <span class="contact-label">LinkedIn</span>
-                                <span class="contact-value">linkedin.com/in/patrick-ackom</span>
+                            <p class="work-desc">
+                                Builds school timetables. You drag classes and teachers into time slots
+                                and it flags clashes as you go, so a week's schedule takes minutes.
+                            </p>
+                            <span class="thumb-field"><img class="work-thumb" src="img/tt.webp" alt="" width="1400" height="717" loading="lazy" /></span>
+                        </li>
+                        <li class="work-item" data-img="img/sr.webp">
+                            <a class="work-link" href="https://storeroom-staging.vercel.app/" target="_blank" rel="noopener noreferrer">
+                                <span class="work-name">Store Room</span>
+                                <span class="work-meta">
+                                    <span class="work-kind">Web app</span>
+                                    <span class="work-stack">React, TypeScript, Tailwind</span>
+                                </span>
                             </a>
+                            <p class="work-desc">
+                                Inventory tracking: what's in stock, what's on order, and
+                                what's about to run out.
+                            </p>
+                            <span class="thumb-field"><img class="work-thumb" src="img/sr.webp" alt="" width="1400" height="598" loading="lazy" /></span>
+                        </li>
+                        <li class="work-item" data-img="img/qc.webp">
+                            <a class="work-link" href="https://live-quickchat.vercel.app/login" target="_blank" rel="noopener noreferrer">
+                                <span class="work-name">Quick Chat</span>
+                                <span class="work-meta">
+                                    <span class="work-kind">Web app and npm package</span>
+                                    <span class="work-stack">React, Firebase, WebSockets</span>
+                                </span>
+                            </a>
+                            <p class="work-desc">
+                                Live chat between a company and its customers, plus a package you can
+                                install to add the chat widget to any app.
+                            </p>
+                            <span class="thumb-field"><img class="work-thumb" src="img/qc.webp" alt="" width="1400" height="665" loading="lazy" /></span>
+                        </li>
+                        <li class="work-item is-light" data-img="img/expense.webp">
+                            <a class="work-link" href="https://play.google.com/store/apps/details?id=com.patrickackom.financetracker" target="_blank" rel="noopener noreferrer">
+                                <span class="work-name">Expense Tracker</span>
+                                <span class="work-meta">
+                                    <span class="work-kind">Android app, free on Google Play</span>
+                                    <span class="work-stack">React Native, Expo, Node.js</span>
+                                </span>
+                            </a>
+                            <p class="work-desc">
+                                Tracks where every cedi goes. It reads your MoMo payment alerts and
+                                logs them for you, with fees and E-Levy split out, keeps a separate book
+                                for each part of your life in any currency, warns you before a budget
+                                runs out, and remembers who owes you. Free, with no ads.
+                            </p>
+                            <span class="thumb-field"><img class="work-thumb" src="img/expense.webp" alt="" width="1400" height="1050" loading="lazy" /></span>
+                        </li>
+                    </ul>
+
+                    <div class="plate" id="plate" aria-hidden="true">
+                        <div class="plate-frame" id="plate-frame">
+                            <img class="plate-img" id="plate-img" src="img/terminal.svg" alt="" />
                         </div>
+                        <p class="plate-caption" id="plate-caption"></p>
                     </div>
                 </div>
             </section>
 
-            <!-- Footer -->
-            <footer class="footer">
-                <div class="container">
-                    <div class="footer-content">
-                        <span class="footer-logo">PA<span class="accent">.</span></span>
-                        <p>Designed & Built by Patrick Ackom</p>
-                        <p class="footer-year">&copy; 2026</p>
+            <!-- ===== Experience ===== -->
+            <section class="experience wrap" id="experience" aria-labelledby="exp-title">
+                <h2 class="section-title" id="exp-title">Where I've worked</h2>
+                <ol class="jobs">
+                    <li class="job">
+                        <p class="job-years">2023 to now</p>
+                        <div class="job-body">
+                            <h3 class="job-role">Senior fullstack engineer <span class="job-at">at SpringKnights</span></h3>
+                            <p>
+                                Web apps and AI features for clients in several countries. I make the
+                                design and architecture calls, mentor junior developers, and help set
+                                technical direction across product teams.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="job">
+                        <p class="job-years">2022 to 2023</p>
+                        <div class="job-body">
+                            <h3 class="job-role">Fullstack developer <span class="job-at">at Asqii</span></h3>
+                            <p>
+                                Built products from scratch for clients in education and finance, and
+                                shipped more than 20 major features aimed at speed and everyday
+                                usability.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="job">
+                        <p class="job-years">2020 to 2021</p>
+                        <div class="job-body">
+                            <h3 class="job-role">Junior frontend developer <span class="job-at">at Detosphere</span></h3>
+                            <p>
+                                Responsive sites and email templates for a startup. Cut page load times
+                                by 60% by cleaning up and trimming the code.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+
+            <!-- ===== Contact ===== -->
+            <section class="contact" id="contact" aria-labelledby="contact-title">
+                <div class="contact-field">
+                    <h2 class="contact-title" id="contact-title">Got something that needs building?</h2>
+                    <p class="contact-note">I'm taking on new projects. Email is the fastest way to reach me.</p>
+                    <a class="contact-email" href="mailto:patrickackom003@gmail.com">patrickackom003<wbr />@gmail.com</a>
+                    <div class="contact-row">
+                        <button class="copy" id="copy" type="button" data-copy="patrickackom003@gmail.com">Copy address</button>
+                        <span class="copy-status" id="copy-status" role="status" aria-live="polite"></span>
+                        <p class="contact-elsewhere">
+                            Code on <a href="https://github.com/patt-rick" target="_blank" rel="noopener">GitHub</a>,
+                            career on <a href="https://www.linkedin.com/in/patrick-ackom" target="_blank" rel="noopener">LinkedIn</a>.
+                        </p>
                     </div>
                 </div>
-            </footer>
+            </section>
         </main>
 
-        <!-- JS (theme first so it applies before paint) -->
-        <script src="js/theme.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-        <script src="js/cursor.js" defer></script>
-        <script src="js/nav.js" defer></script>
-        <script src="js/motion.js" defer></script>
+        <footer class="footer wrap">
+            <p class="footer-copy">&copy; 2026 Patrick Ackom. Designed and built by me.</p>
+            <div class="egg" id="egg">
+                <button class="egg-square" id="egg-square" type="button" aria-describedby="egg-hint">
+                    <svg class="egg-ring" viewBox="0 0 40 40" aria-hidden="true">
+                        <circle cx="20" cy="20" r="18" pathLength="1" />
+                    </svg>
+                    <span class="sr-only">Open the hidden page</span>
+                </button>
+                <p class="egg-hint" id="egg-hint">Press and hold the square. It's a door.</p>
+                <p class="sr-only" id="egg-status" aria-live="polite"></p>
+            </div>
+        </footer>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+        <script src="js/main.js" defer></script>
         <script src="js/easter.js" defer></script>
-        <script src="js/webgl.js" type="module"></script>
     </body>
 </html>
