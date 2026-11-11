@@ -1,9 +1,8 @@
 /* ==========================================================
    easter.js: the door to /odyssey/.
    Ways in:
-     - press and hold the ultramarine square in the footer
+     - press and hold the square in the footer
      - type "odyssey" anywhere, or enter the Konami code
-     - the wristwatch in the hero photo points you to the square
    Screen reader and reduced-motion users can open it with a plain
    click or Enter; nobody has to hold anything to get through.
    ========================================================== */
@@ -19,10 +18,10 @@
   let warping = false;
 
   console.log(
-    '%cPA%c\nThis page has a back door. Hold the blue square in the footer, or just type %codyssey%c.',
-    'font: 900 28px Archivo, sans-serif; color: #2f36e0;',
+    '%cPA%c\nThis page has a back door. Hold the square in the footer, or just type %codyssey%c.',
+    'font: 600 28px Inter, sans-serif; color: #d4a24c;',
     'font: 14px sans-serif;',
-    'font: bold 14px monospace; color: #2f36e0;',
+    'font: bold 14px monospace; color: #d4a24c;',
     'font: 14px sans-serif;'
   );
 
