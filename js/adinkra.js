@@ -107,8 +107,6 @@
       dpr = ndpr;
       canvas.width = Math.round(W * dpr);
       canvas.height = Math.round(H * dpr);
-      canvas.style.width = W + 'px';
-      canvas.style.height = H + 'px';
       if (dprChanged || !sprites.length) buildSprites();
       const want = targetCount();
       while (particles.length < want) particles.push(spawn({}, true));
@@ -137,7 +135,8 @@
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const k = dt / 16.67;
-      fade += ((footerVisible ? 1 : 0) - fade) * Math.min(1, 0.05 * k);
+      if (k) fade += ((footerVisible ? 1 : 0) - fade) * Math.min(1, 0.05 * k);
+      else fade = footerVisible ? 1 : 0;
 
       for (const p of particles) {
         const layer = LAYERS[p.layer];
@@ -172,7 +171,13 @@
     function loop(now) {
       const dt = last ? Math.min(now - last, 50) : 16.67;
       last = now;
-      drawFrame(dt, now);
+      try {
+        drawFrame(dt, now);
+      } catch (err) {
+        raf = 0;
+        canvas.style.display = 'none';
+        return;
+      }
       raf = requestAnimationFrame(loop);
     }
 
@@ -214,9 +219,12 @@
       },
       { passive: true }
     );
-    document.addEventListener('pointerleave', () => {
+    const clearPointer = () => {
       pointer.x = pointer.y = -9999;
-    });
+    };
+    addEventListener('pointerup', (e) => e.pointerType !== 'mouse' && clearPointer(), { passive: true });
+    addEventListener('pointercancel', clearPointer, { passive: true });
+    document.addEventListener('pointerout', (e) => !e.relatedTarget && clearPointer());
     addEventListener('themechange', () => {
       buildSprites();
       if (!running()) drawFrame(0, 0);

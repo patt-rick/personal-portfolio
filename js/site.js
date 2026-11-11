@@ -10,7 +10,6 @@
   function syncToggle() {
     if (!toggle) return;
     const dark = root.getAttribute('data-theme') === 'dark';
-    toggle.setAttribute('aria-pressed', String(dark));
     toggle.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
   }
   if (toggle) {

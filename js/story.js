@@ -40,9 +40,13 @@
 
   root.classList.add('story-playing');
   root.classList.remove('story-pending');
-  buildControls();
-  addListeners();
-  timer = setTimeout(next, NAME_MS);
+  try {
+    buildControls();
+    addListeners();
+    timer = setTimeout(next, NAME_MS);
+  } catch (e) {
+    finish();
+  }
 
   /* ---------- Split paragraphs into reveal units ---------- */
   function tokenise(container) {
@@ -127,7 +131,6 @@
     ffButton.addEventListener('click', () => {
       speed = speed === 1 ? 4 : 1;
       ffButton.setAttribute('aria-pressed', String(speed > 1));
-      ffButton.querySelector('span').textContent = speed > 1 ? 'Normal speed' : 'Fast forward';
     });
 
     const skip = document.createElement('button');
@@ -141,7 +144,7 @@
   }
 
   /* ---------- Things that end the intro ---------- */
-  const lockedSelector = '#after-story, .footer, .nav';
+  const lockedSelector = '#story, #after-story, .footer, .nav';
 
   function onKey(e) {
     if (e.key === 'Escape') return finish();
@@ -155,7 +158,7 @@
     if (scrollY > 4) finish();
   }
   function onFocusIn(e) {
-    if (e.target.closest && e.target.closest('#after-story, .footer')) finish();
+    if (e.target.closest && e.target.closest('#after-story, .footer, #story a')) finish();
   }
   function onClick(e) {
     const link = e.target.closest && e.target.closest('a[href]');
