@@ -308,6 +308,57 @@ a.chip:hover { text-decoration-style: solid; text-decoration-color: currentColor
   height: 14px;
 }
 .chip-ico--emoji { background: none; font-size: 13px; }
+.chip-ico--claude { background: #d97757; }
+
+/* Paintings: small thumbnails in the text that pop out on hover or focus. */
+.arts { white-space: nowrap; }
+.art {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  top: -1px;
+  width: 22px;
+  height: 22px;
+  margin: 0 2px;
+  border-radius: 5px;
+  background: var(--chip-bg) var(--art) center / cover no-repeat;
+  box-shadow: 0 0 0 1px var(--rule);
+}
+.art::after {
+  --tx: -50%;
+  --ty: 6px;
+  --ox: center;
+  --oy: bottom;
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  width: min(240px, 62vw);
+  aspect-ratio: 1;
+  border-radius: 10px;
+  background: var(--bg) var(--art) center / contain no-repeat;
+  box-shadow: 0 0 0 1px var(--rule), 0 18px 40px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transform: translateX(var(--tx)) translateY(var(--ty)) scale(0.5);
+  transform-origin: var(--ox) var(--oy);
+  pointer-events: none;
+  transition: opacity 0.16s ease, transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 30;
+}
+/* Keep the outer two inside a narrow column. */
+.art:first-child::after { left: 0; --tx: 0; --ox: left; }
+.art:last-child::after { left: auto; right: 0; --tx: 0; --ox: right; }
+/* Too close to the top (site.js decides): open downward instead. */
+.art--down::after { bottom: auto; top: calc(100% + 10px); --ty: -6px; --oy: top; }
+.art:hover::after,
+.art:focus-visible::after {
+  opacity: 1;
+  transform: translateX(var(--tx)) translateY(0) scale(1);
+}
+.art:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  .art::after { transition: none; transform: translateX(var(--tx)); }
+}
 
 .hand {
   font-family: 'Caveat', cursive;

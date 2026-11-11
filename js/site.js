@@ -33,6 +33,18 @@
     addEventListener('scroll', onScroll, { passive: true });
   }
 
+  /* ---------- Painting pop-outs: open downward when there's no room above ---------- */
+  document.querySelectorAll('.art').forEach((art) => {
+    const place = () => {
+      const pop = Math.min(240, innerWidth * 0.62) + 10;
+      const nav = document.querySelector('.nav-wrap');
+      const top = nav ? nav.getBoundingClientRect().bottom : 0;
+      art.classList.toggle('art--down', art.getBoundingClientRect().top - pop < top + 8);
+    };
+    art.addEventListener('pointerenter', place);
+    art.addEventListener('focus', place);
+  });
+
   /* ---------- Copy email ---------- */
   const copy = document.getElementById('copy');
   const status = document.getElementById('copy-status');
