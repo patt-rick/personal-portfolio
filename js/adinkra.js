@@ -1,5 +1,5 @@
 /* ==========================================================
-   adinkra.js: Adinkra symbols drifting down behind the page.
+   adinkra.js: symbols (Adinkra, tech, camera, paint) drifting down behind the page.
    - Three depth layers, blur baked into sprites once (no per-frame filters).
    - Dimmed inside the reading column so text keeps its contrast.
    - Fades out near the bottom of the screen once the footer is in view.
@@ -23,7 +23,7 @@
       { min: 24, max: 34, blur: 1.2, alpha: 0.32, speed: 0.3, sway: 10 },
       { min: 36, max: 52, blur: 0, alpha: 0.45, speed: 0.5, sway: 14 },
     ];
-    const COLUMN_HALF = 280; // half of the dimmed band around the 520px column
+    const COLUMN_HALF = 340; // half of the dimmed band around the 640px column
     const COLUMN_EDGE = 70; // soft edge of that band
     const PUSH_RADIUS = 120;
 
