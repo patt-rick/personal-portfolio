@@ -481,6 +481,7 @@
   }
 
   function startGame() {
+    if (!nameImg) return; // still waiting for the font
     score = 0;
     lives = 3;
     combo = 0;
@@ -594,6 +595,7 @@
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
+      if (!nameImg) return; // boot() lays out once the name exists
       const wasPlaying = state === 'play' || (state === 'paused' && resumeTo === 'play');
       layout();
       if (state === 'ready' || state === 'menu') restOnPaddle();
@@ -734,12 +736,22 @@
     const lines = ['patrick', 'ackom'];
     const m = document.createElement('canvas').getContext('2d');
     m.font = font;
-    const widths = lines.map((l) => m.measureText(l).width);
-    const pad = size * 0.12;
-    const lineH = size * 0.86;
+    // Real ink bounds, so the italic overhang and descenders are accounted for.
+    const box = lines.map((l) => {
+      const t = m.measureText(l);
+      return {
+        left: t.actualBoundingBoxLeft,
+        width: t.actualBoundingBoxLeft + t.actualBoundingBoxRight,
+        ascent: t.actualBoundingBoxAscent,
+        descent: t.actualBoundingBoxDescent,
+      };
+    });
+    const pad = Math.round(size * 0.04);
+    const gap = size * 0.02;
+    const maxW = Math.max(...box.map((b) => b.width));
     const c = document.createElement('canvas');
-    c.width = Math.ceil(Math.max(...widths) + pad * 2 + size * 0.18); // italic overhang
-    c.height = Math.ceil(lineH * lines.length + pad * 2);
+    c.width = Math.ceil(maxW + pad * 2);
+    c.height = Math.ceil(box.reduce((h, b) => h + b.ascent + b.descent, 0) + gap + pad * 2);
     const g = c.getContext('2d');
     g.font = font;
     g.textBaseline = 'alphabetic';
@@ -747,12 +759,14 @@
     g.strokeStyle = NAME_INK;
     g.lineWidth = size * 0.035;
     g.lineJoin = 'round';
-    lines.forEach((line, i) => {
+    let y = pad;
+    box.forEach((b, i) => {
+      y += b.ascent;
       // second line steps in a little, like a signature
-      const x = pad + (i ? (Math.max(...widths) - widths[i]) * 0.55 : 0);
-      const y = pad + lineH * (i + 1) - size * 0.12;
-      g.fillText(line, x, y);
-      g.strokeText(line, x, y);
+      const x = pad + b.left + (i ? (maxW - b.width) * 0.55 : 0);
+      g.fillText(lines[i], x, y);
+      g.strokeText(lines[i], x, y);
+      y += b.descent + gap;
     });
     return c;
   }

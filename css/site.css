@@ -285,7 +285,7 @@ a.chip:hover { text-decoration-style: solid; text-decoration-color: currentColor
   place-items: center;
   vertical-align: middle;
   position: relative;
-  top: -0.08em;
+  top: -1px;
   margin-right: 5px;
   width: 16px;
   height: 16px;
