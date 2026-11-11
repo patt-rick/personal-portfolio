@@ -2,7 +2,7 @@
    patrickackom.site: one narrow column, a story, and Adinkra
    symbols drifting through warm light behind it.
    Inter for reading, Caveat for the odd handwritten aside,
-   Mrs Saint Delafield for the name.
+   Instrument Serif italic for the name.
    ========================================================== */
 
 /* ---------- Tokens ---------- */
@@ -22,7 +22,7 @@
   --shaft: rgba(212, 162, 76, 0.16);
   --grain: 0.05;
 
-  --col: 520px;
+  --col: 640px;
   --gutter: 16px;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   color-scheme: light;
@@ -77,8 +77,8 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  font-size: 15px;
-  line-height: 1.65;
+  font-size: 16px;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
   transition: background-color 0.4s ease, color 0.4s ease;
@@ -247,11 +247,11 @@ button { font: inherit; color: inherit; }
 }
 .name-script {
   display: inline-block;
-  font-family: 'Mrs Saint Delafield', 'Brush Script MT', cursive;
-  font-size: clamp(48px, 13vw, 64px);
-  letter-spacing: 0.01em;
-  padding: 0.15em 0.25em 0.1em 0.05em;
-  margin-left: -0.05em;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(46px, 11vw, 64px);
+  letter-spacing: -0.015em;
+  padding: 0.05em 0.12em 0.08em 0;
   color: var(--text);
 }
 .akwaaba {
@@ -261,7 +261,7 @@ button { font: inherit; color: inherit; }
 }
 
 .story {
-  margin-top: 26px;
+  margin-top: 22px;
   color: var(--muted);
 }
 .story p + p { margin-top: 14px; }
@@ -283,7 +283,9 @@ a.chip:hover { text-decoration-style: solid; text-decoration-color: currentColor
 .chip-ico {
   display: inline-grid;
   place-items: center;
-  vertical-align: -3px;
+  vertical-align: middle;
+  position: relative;
+  top: -0.08em;
   margin-right: 5px;
   width: 16px;
   height: 16px;
@@ -304,7 +306,6 @@ a.chip:hover { text-decoration-style: solid; text-decoration-color: currentColor
   mask: var(--icon) center / contain no-repeat;
   width: 14px;
   height: 14px;
-  vertical-align: -2px;
 }
 .chip-ico--emoji { background: none; font-size: 13px; }
 
@@ -332,8 +333,8 @@ mark.hl {
   animation: draw-name 1.3s cubic-bezier(0.55, 0, 0.3, 1) both;
 }
 @keyframes draw-name {
-  from { clip-path: inset(-40% 100% -40% -20%); }
-  to { clip-path: inset(-40% -20% -40% -20%); }
+  from { clip-path: inset(-20% 100% -30% -10%); }
+  to { clip-path: inset(-20% -10% -30% -10%); }
 }
 .story-playing .story .u {
   opacity: 0;
@@ -398,7 +399,7 @@ mark.hl {
   margin-bottom: 14px;
 }
 .section-title {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--text);
 }
@@ -449,7 +450,7 @@ mark.hl {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--text);
 }
@@ -478,7 +479,7 @@ mark.hl {
   font-variant-numeric: tabular-nums;
   padding-top: 1px;
 }
-.job-role { font-size: 15px; font-weight: 500; color: var(--text); }
+.job-role { font-size: 16px; font-weight: 500; color: var(--text); }
 .job-at { color: var(--muted); font-weight: 400; }
 .job-desc { color: var(--muted); }
 @media (max-width: 460px) {
@@ -506,8 +507,9 @@ mark.hl {
   gap: 14px 20px;
 }
 .footer-name {
-  font-family: 'Mrs Saint Delafield', cursive;
-  font-size: 30px;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-style: italic;
+  font-size: 26px;
   line-height: 1;
   color: var(--muted);
 }
@@ -587,11 +589,11 @@ mark.hl {
   stroke-dasharray: 1;
   stroke-dashoffset: calc(1 - var(--p, 0));
 }
-/* The warp hands off to the odyssey page, which is ultramarine. */
+/* The warp grows in the accent colour and settles into the page background. */
 .warp {
   position: fixed;
   z-index: 1000;
-  background: #2f36e0;
+  background: var(--accent);
   pointer-events: none;
 }
 
@@ -604,7 +606,23 @@ mark.hl {
   pointer-events: none;
   background: radial-gradient(70% 100% at 50% 0%, color-mix(in srgb, var(--card) 38%, transparent), transparent 75%);
 }
-.project { padding-top: clamp(36px, 8vh, 80px); }
+.project { padding-top: clamp(28px, 6vh, 64px); }
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 18px;
+  margin-left: -10px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+.back:hover { color: var(--text); background: var(--chip-bg); }
+.back .arrow { transition: transform 0.3s var(--ease-out); }
+.back:hover .arrow { transform: translateX(-3px); }
 .project-head {
   display: flex;
   align-items: flex-start;
@@ -646,7 +664,7 @@ mark.hl {
 .prose p + p { margin-top: 14px; }
 .prose h2 {
   margin: 34px 0 10px;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--text);
 }

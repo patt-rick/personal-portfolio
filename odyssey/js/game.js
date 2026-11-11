@@ -1,12 +1,15 @@
 /* ==========================================================
-   game.js: Knock my name off the poster.
-   Breakout where the bricks are the real poster type. The
+   game.js: Knock my name off the page.
+   Breakout where the bricks are my name, set in the site's type. The
    collision grid is invisible; each brick you hit bites its
    chunk out of the name, and the chunk falls away.
    ========================================================== */
 (function () {
-  const FIELD = '#2f36e0';
-  const CHALK = '#eef0f3';
+  // Same palette as the rest of the site, in whichever theme the visitor chose.
+  const DARK = document.documentElement.getAttribute('data-theme') === 'dark';
+  const FIELD = DARK ? '#1a1918' : '#f4efe6';
+  const CHALK = DARK ? '#efe3c8' : '#2a2219';
+  const NAME_INK = DARK ? '#d4a24c' : '#8a5712';
   const DT = 1 / 120;
   const BEST_KEY = 'pa-poster-breakout-best';
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -77,7 +80,7 @@
   let W = 0;
   let H = 0;
   let dpr = 1;
-  const nameImg = new Image();
+  let nameImg = null; // a canvas holding the name, drawn once the font is ready
   const nameLayer = document.createElement('canvas');
   const nameCtx = nameLayer.getContext('2d', { willReadFrequently: true });
   const name = { x: 0, y: 0, w: 0, h: 0 };
@@ -114,7 +117,7 @@
     canvas.height = Math.round(H * dpr);
 
     const gutter = W >= 1200 ? 48 : W >= 768 ? 32 : 16;
-    const aspect = nameImg.naturalWidth / nameImg.naturalHeight || 2.56;
+    const aspect = nameImg.width / nameImg.height || 2.56;
     let nw = Math.min(W - gutter * 2, 1320);
     let nh = nw / aspect;
     if (nh > H * 0.4) {
@@ -442,7 +445,7 @@
     const { isBest } = finishScore();
     $('won-score').textContent = `${fmt(score)} points, including ${fmt(bonus)} for the ${lives === 1 ? 'ball' : 'balls'} you had left.${isBest ? ' Your best yet.' : ''}`;
     show('screen-won');
-    say(`You cleared the poster with ${fmt(score)} points.`);
+    say(`You cleared the page with ${fmt(score)} points.`);
     [523, 659, 784, 1047].forEach((f, i) => setTimeout(() => blip(f, 0.14), i * 110));
   }
 
@@ -677,7 +680,7 @@
     ctx.textBaseline = 'middle';
     for (const p of popups) {
       ctx.globalAlpha = Math.min(1, p.life / 0.4);
-      ctx.font = `${p.big ? 900 : 700} ${p.big ? 34 : 14}px Archivo, system-ui, sans-serif`;
+      ctx.font = p.big ? 'italic 400 40px "Instrument Serif", Georgia, serif' : '600 14px Inter, system-ui, sans-serif';
       ctx.fillText(p.text, p.x, p.y);
     }
     ctx.globalAlpha = 1;
@@ -723,14 +726,49 @@
     start.querySelector('[data-action="play"]').hidden = true;
     show('screen-start');
   }
-  nameImg.onload = () =>
-    (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => {
-      try {
-        boot();
-      } catch (e) {
-        failed();
-      }
+  // Set the name in Instrument Serif italic, two lines, with a light stroke so the
+  // thin strokes still make bricks worth hitting.
+  function makeName() {
+    const size = 220;
+    const font = `italic 400 ${size}px "Instrument Serif", Georgia, serif`;
+    const lines = ['patrick', 'ackom'];
+    const m = document.createElement('canvas').getContext('2d');
+    m.font = font;
+    const widths = lines.map((l) => m.measureText(l).width);
+    const pad = size * 0.12;
+    const lineH = size * 0.86;
+    const c = document.createElement('canvas');
+    c.width = Math.ceil(Math.max(...widths) + pad * 2 + size * 0.18); // italic overhang
+    c.height = Math.ceil(lineH * lines.length + pad * 2);
+    const g = c.getContext('2d');
+    g.font = font;
+    g.textBaseline = 'alphabetic';
+    g.fillStyle = NAME_INK;
+    g.strokeStyle = NAME_INK;
+    g.lineWidth = size * 0.035;
+    g.lineJoin = 'round';
+    lines.forEach((line, i) => {
+      // second line steps in a little, like a signature
+      const x = pad + (i ? (Math.max(...widths) - widths[i]) * 0.55 : 0);
+      const y = pad + lineH * (i + 1) - size * 0.12;
+      g.fillText(line, x, y);
+      g.strokeText(line, x, y);
     });
-  nameImg.onerror = failed;
-  nameImg.src = 'img/name.webp';
+    return c;
+  }
+
+  const fontReady = document.fonts
+    ? Promise.race([
+        document.fonts.load('italic 220px "Instrument Serif"'),
+        new Promise((r) => setTimeout(r, 2500)),
+      ]).catch(() => {})
+    : Promise.resolve();
+  fontReady.then(() => {
+    try {
+      nameImg = makeName();
+      boot();
+    } catch (e) {
+      failed();
+    }
+  });
 })();

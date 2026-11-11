@@ -9,7 +9,6 @@
 (function () {
   const DEST = 'odyssey/';
   const HOLD_MS = 1200;
-  const ODYSSEY_BG = '#2f36e0';
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const square = document.getElementById('egg-square');
@@ -45,13 +44,16 @@
     el.style.cssText = `left:${cx - size / 2}px;top:${cy - size / 2}px;width:${size}px;height:${size}px;`;
     document.body.appendChild(el);
 
+    const css = getComputedStyle(document.documentElement);
+    const ACCENT = css.getPropertyValue('--accent').trim() || '#d4a24c';
+    const FIELD = css.getPropertyValue('--bg').trim() || '#1a1918';
     const reach = Math.hypot(Math.max(cx, innerWidth - cx), Math.max(cy, innerHeight - cy));
     const scale = (reach * 2.2) / size;
     el.animate(
       [
-        { transform: 'rotate(45deg) scale(1)', background: '#2f36e0' },
-        { transform: `rotate(45deg) scale(${scale * 0.6})`, background: '#2f36e0', offset: 0.55 },
-        { transform: `rotate(45deg) scale(${scale})`, background: ODYSSEY_BG },
+        { transform: 'rotate(45deg) scale(1)', background: ACCENT },
+        { transform: `rotate(45deg) scale(${scale * 0.6})`, background: ACCENT, offset: 0.55 },
+        { transform: `rotate(45deg) scale(${scale})`, background: FIELD },
       ],
       { duration: 1000, easing: 'cubic-bezier(0.7, 0, 0.2, 1)', fill: 'forwards' }
     ).finished.then(() => {
