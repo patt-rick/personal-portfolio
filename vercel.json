@@ -1,3 +1,7 @@
 {
-  "trailingSlash": true
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/projects/class-tablr", "destination": "/projects/fibrelink/", "permanent": true },
+    { "source": "/projects/class-tablr/", "destination": "/projects/fibrelink/", "permanent": true }
+  ]
 }

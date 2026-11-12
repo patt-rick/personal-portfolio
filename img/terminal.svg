@@ -14,7 +14,7 @@
     <circle cx="258" cy="230" r="6" fill="#28c840"/>
     <text x="36" y="290" fill="#b9bbcc">arij</text>
     <text x="36" y="342" fill="#b9bbcc">wterm-rs</text>
-    <text x="36" y="394" fill="#b9bbcc">class-tablr</text>
+    <text x="36" y="394" fill="#b9bbcc">fibrelink</text>
   </g>
   <g font-family="Consolas, Menlo, monospace" font-size="27">
     <text x="344" y="130" fill="#f2f3f7"><tspan fill="#28c840">➜</tspan>  cargo build --release</text>

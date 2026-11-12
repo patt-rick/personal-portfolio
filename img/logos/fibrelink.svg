@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- FibreLink: a strand of light rising to a point, in ink on saffron (the BrandMark, at icon scale). -->
+  <rect width="512" height="512" rx="120" fill="#ffa23a"/>
+  <path d="M122 364 C 236 364 268 154 384 154" fill="none" stroke="#1f1100" stroke-width="34" stroke-linecap="round"/>
+  <circle cx="384" cy="154" r="44" fill="#1f1100"/>
+</svg>
