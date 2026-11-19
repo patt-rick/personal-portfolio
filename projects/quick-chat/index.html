@@ -72,23 +72,11 @@
                 </div>
 
                 <div class="prose">
-<p>Quick Chat gives a business live chat with its customers. The owner gets a dashboard with a
-client list and a thread for each client; their customers get a chat widget inside the owner's
-own React app.</p>
-<p>The widget ships on npm as <code>@patt-rick/react-quickchat</code>. Adding it is one component,
-<code>&lt;Chat primaryColor clientDetails adminDetails=&#123;&#123; adminOrgName, adminOrgId &#125;&#125; /&gt;</code>,
-and the dashboard's configuration page gives you the snippet for your organisation.</p>
-
-<h2>How messages move</h2>
-<p>Everything is realtime through <strong>Firestore listeners</strong>: the widget subscribes to a
-customer's messages in time order, the dashboard to the organisation's clients. Images upload to
-Firebase Storage. Each conversation belongs to its business through the organisation id passed
-into the widget, which is created when the owner signs up.</p>
-
-<h2>Two rounds</h2>
-<p>I built the first version in late 2023 with MUI and shipped it that December. In spring 2025 I
-came back and rebuilt the interface with Tailwind and shadcn/ui, and added light and dark mode,
-colour themes and a landing page.</p>
+<p>Quick Chat lets any business talk to its customers live, right inside its own app. Customers get
+answers in real time; the business sees every conversation in one dashboard.</p>
+<p>Adding it takes a single component from npm (<code>@patt-rick/react-quickchat</code>). Pick your
+brand colour and you're live, with photo sharing, light and dark mode and themes included.</p>
+<p>Built with <strong>React</strong>, <strong>TypeScript</strong> and <strong>Firebase</strong>.</p>
                 </div>
 
                 <h2 class="sr-only">Built with</h2>

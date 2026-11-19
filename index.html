@@ -78,9 +78,10 @@
 
             <div class="story" id="story">
                 <p>
-                    I've been poking at broken software since I was a kid, working out why it failed and
-                    how to make it behave. I started writing code in high school, and it turned out to be
-                    the same itch from the other side.
+                    It started with things breaking. As a kid, whenever a program crashed or froze, I
+                    couldn't leave it alone. I'd poke at it until I worked out why it failed and how to
+                    make it behave. Then, in high school, I wrote my first lines of code and realised I'd
+                    been on the wrong side of the screen all along. I've been building ever since.
                 </p>
                 <p>
                     I started out at
@@ -98,13 +99,26 @@
                     and React Native, wired up to the
                     <span class="chip"><span class="chip-ico chip-ico--mask chip-ico--claude" style="--icon: url(/img/logos/claude.svg)" aria-hidden="true"></span>Claude</span> and
                     <span class="chip"><span class="chip-ico chip-ico--mask" style="--icon: url(/img/logos/openai.svg)" aria-hidden="true"></span>OpenAI</span> APIs.
-                    On the side I built
-                    <a class="chip" href="/projects/terminal-workspace/"><span class="chip-ico chip-ico--img" style="--icon: url(/img/logos/terminal-workspace.png)" aria-hidden="true"></span>Terminal Workspace</a>,
-                    a terminal app in Rust for working with coding agents, an
+                </p>
+                <p>
+                    On the side, I've always built things for myself, small tools to learn from and
+                    actually use. Then AI arrived, and suddenly I could build several things at once.
+                    That brought a new problem: a mess of terminals, one for every project and every
+                    agent. So I built
+                    <a class="chip" href="/projects/terminal-workspace/"><span class="chip-ico chip-ico--img" style="--icon: url(/img/logos/terminal-workspace.png)" aria-hidden="true"></span>Terminal Workspace</a>
+                    to keep all my projects in one place.
+                </p>
+                <p>
+                    My friends and I needed a decent way to track our spending, but every app out there was
+                    either terrible or stuffed with ads and AI. So I built an
                     <a class="chip" href="/projects/expense-tracker/"><span class="chip-ico chip-ico--img" style="--icon: url(/img/logos/expense-tracker.png)" aria-hidden="true"></span>expense tracker</a>
-                    that logs your MoMo alerts for you, so you don't have to do it by hand, and
+                    that does exactly what we need and logs our MoMo payments by itself. Later, I got fibre
+                    at home, and the router's settings were a maze, so I built
                     <a class="chip" href="/projects/fibrelink/"><span class="chip-ico chip-ico--img" style="--icon: url(/img/logos/fibrelink.svg)" aria-hidden="true"></span>FibreLink</a>,
-                    which decides who in the house gets the internet, and when.
+                    a simple way to decide who in the house gets the internet, and when. Most recently, I got
+                    tired of hunting for a different website every time I needed to convert a file, so I built
+                    <a class="chip" href="/projects/recast/"><span class="chip-ico chip-ico--img" style="--icon: url(/img/logos/recast.svg)" aria-hidden="true"></span>Recast</a>,
+                    which turns any file into whatever format you need.
                 </p>
                 <p>
                     Away from the screen I'm into
@@ -127,7 +141,7 @@
                     <div class="cards">
                         <a class="card" href="/projects/terminal-workspace/" style="--card: #1f6f4a">
                             <div class="card-frame">
-                                <img class="card-shot" src="/img/terminal.svg" alt="" width="1400" height="875" />
+                                <img class="card-shot" src="/img/terminal.webp" alt="" width="1600" height="1000" />
                             </div>
                             <div class="card-meta">
                                 <h3 class="card-title">Terminal Workspace <span class="arrow" aria-hidden="true">→</span></h3>
@@ -143,6 +157,16 @@
                                 <h3 class="card-title">Expense Tracker <span class="arrow" aria-hidden="true">→</span></h3>
                                 <p class="card-line">An Android app that logs your MoMo and bank alerts, so you don't have to.</p>
                                 <p class="card-stack">React Native, Expo, Kotlin</p>
+                            </div>
+                        </a>
+                        <a class="card" href="/projects/recast/" style="--card: #6d4fd8">
+                            <div class="card-frame">
+                                <img class="card-shot" src="/img/recast.webp" alt="" width="1280" height="800" loading="lazy" />
+                            </div>
+                            <div class="card-meta">
+                                <h3 class="card-title">Recast <span class="arrow" aria-hidden="true">→</span></h3>
+                                <p class="card-line">Convert any file to any format. Shake it, drag it to the edge, and pick.</p>
+                                <p class="card-stack">Rust, Tauri 2, React 19</p>
                             </div>
                         </a>
                         <a class="card" href="/projects/fibrelink/" style="--card: #e08a1e">

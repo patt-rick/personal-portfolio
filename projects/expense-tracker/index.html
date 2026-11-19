@@ -72,32 +72,13 @@
                 </div>
 
                 <div class="prose">
-<p>Expense Tracker keeps track of where every cedi goes. Every MoMo payment already sends you an
-alert, so the app reads those alerts, along with bank messages, and logs the transaction for
-you.</p>
-<p>Around that: separate cashbooks for different parts of your life, categories, budgets, debts,
-reports, CSV export and three home-screen widgets. It works offline with no account and no ads,
-and your data stays on the phone.</p>
-
-<h2>Reading the alerts</h2>
-<p>Native <strong>Kotlin</strong> code listens for SMS and notifications and queues them, even when
-the JavaScript side isn't running. A parser of about 1,450 lines matches each message against
-provider templates (MTN MoMo, Telecel Cash, AirtelTigo, banks and bills) and falls back to a
-generic parser. Every result gets a weighted confidence score, and anything below the threshold
-goes to a review queue for you to confirm instead of being saved blindly.</p>
-
-<h2>One payment, two alerts</h2>
-<p>The same payment often arrives as both an SMS and an app notification. Each one is fingerprinted
-from the sender, currency, amount and the transaction reference when there is one (otherwise the
-merchant and a two-minute window), and ingestion is serialised per fingerprint so the two can't
-race each other into a duplicate.</p>
-
-<h2>What the money cost to move</h2>
-<p>Fees and levies are split out of the amount into their own field, so reports show what you
-spent and, separately, what moving it cost you.</p>
-<p>I also ran an adversarial audit of the parser. It found real misreads, like a cashback line
-being taken as the payment amount, and each one became a regression test. The project has 55 test
-files, 23 of them for auto-logging.</p>
+<p>Expense Tracker is an Android app and the easiest way to know where every cedi goes. Every MoMo payment already
+sends you an alert, so the app reads it and logs the transaction for you. You never type in a
+thing.</p>
+<p>Keep separate cashbooks, set budgets, track who owes you, and see clear reports of your
+spending, right from your home screen. It's free, works offline, needs no account, and your money
+data never leaves your phone.</p>
+<p>Built with <strong>React Native</strong>, <strong>Expo</strong> and <strong>Kotlin</strong>.</p>
                 </div>
 
                 <h2 class="sr-only">Built with</h2>
@@ -106,7 +87,7 @@ files, 23 of them for auto-logging.</p>
 
             <nav class="pager" aria-label="More projects">
                 <a class="prev" href="/projects/terminal-workspace/"><span class="dir">← Previous</span><span class="to">Terminal Workspace</span></a>
-                <a class="next" href="/projects/fibrelink/"><span class="dir">Next →</span><span class="to">FibreLink</span></a>
+                <a class="next" href="/projects/recast/"><span class="dir">Next →</span><span class="to">Recast</span></a>
             </nav>
         </main>
 

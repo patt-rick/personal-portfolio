@@ -67,45 +67,23 @@
                 </header>
 
                 <div class="card-frame">
-                    <img class="card-shot" src="/img/terminal.svg" alt="Terminal Workspace with several project terminals open" width="1400" height="875" fetchpriority="high" />
+                    <img class="card-shot" src="/img/terminal.webp" alt="Terminal Workspace: a project rail, a coding agent working in a terminal tab, and past sessions in the side panel" width="1600" height="1000" fetchpriority="high" />
                 </div>
 
                 <div class="prose">
-<p>Terminal Workspace is a desktop app for juggling many projects at once, each with as many
-terminals as it needs. It's built for working alongside coding agents like Claude Code, aider and
-Codex, but any shell is welcome.</p>
-<p>I built it in <strong>Rust and Tauri 2</strong>, starting in June 2026, with an interface
-of its own. It's now about 250 commits and roughly 20,000 lines of Rust.</p>
-
-<h2>What it does</h2>
-<ul>
-  <li>Terminals keep running when you switch projects, with bell and “working” indicators so you know which agent needs you.</li>
-  <li>Claude hooks can send a push notification to your phone when a session wants attention.</li>
-  <li>Browse and resume past Claude Code sessions, switch between Claude accounts, and see usage and cost.</li>
-  <li>API keys live in the OS keychain and are injected into terminals as environment variables.</li>
-  <li>A file tree with quick open, a CodeMirror editor, a git diff viewer, and per-repo GitHub push identities.</li>
-  <li>Six themes, WSL support and signed auto-updates.</li>
-</ul>
-
-<h2>Closing a terminal means closing everything in it</h2>
-<p>On Windows, killing a shell doesn't kill the dev server it started. So each shell runs inside a
-<strong>Windows Job Object</strong>: when the terminal closes, the whole process tree goes with it
-and nothing is left holding a port. The app also ships its own newer ConPTY build next to the
-binary rather than relying on the one that comes with Windows.</p>
-
-<h2>Your terminals, from your phone</h2>
-<p>An embedded <code>axum</code> server can be reached through a Cloudflare quick tunnel or
-Tailscale. Pairing uses a six-digit code that expires after five minutes and locks after five wrong
-tries, then hands the phone a 256-bit session token that only ever lives in memory. Every remote
-action goes through an explicit allowlist, and push notifications use Web Push encryption
-implemented directly on <code>ring</code>. The phone client is a single HTML file compiled into
-the binary.</p>
-<p>The “working” indicators come from OSC 133 shell-integration markers, which tell the app
-exactly when a command starts and finishes.</p>
+<p>Terminal Workspace is home base for everything you're building. Every project sits in its own
+tile down the side, with its own terminals, files, git changes and past coding-agent sessions, so
+switching projects is one click and nothing you left running stops.</p>
+<p>Step away from your desk and keep working from your phone. Pair it once with a short code and
+your whole workspace is in your pocket: the same projects, every terminal, and your Claude Code
+sessions laid out as a simple chat you can reply to from anywhere. Your phone pings you the
+moment an agent needs you.</p>
+<p>Works with Claude Code, Codex, aider or any shell. Built with <strong>Rust</strong>,
+<strong>Tauri 2</strong> and <strong>React</strong>.</p>
                 </div>
 
                 <h2 class="sr-only">Built with</h2>
-                <ul class="stack-line"><li class="tag">Rust</li><li class="tag">Tauri 2</li><li class="tag">React 19</li><li class="tag">xterm.js</li><li class="tag">CodeMirror 6</li><li class="tag">axum</li><li class="tag">portable-pty</li><li class="tag">git2</li></ul>
+                <ul class="stack-line"><li class="tag">Rust</li><li class="tag">Tauri 2</li><li class="tag">React 19</li><li class="tag">TypeScript</li></ul>
             </article>
 
             <nav class="pager" aria-label="More projects">

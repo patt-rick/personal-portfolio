@@ -72,38 +72,13 @@
                 </div>
 
                 <div class="prose">
-<p>FibreLink gives a household simple control over who uses the home internet and when. It groups
-phones, tablets and laptops by person, pauses them at bedtime or homework time or once they hit a
-daily or monthly data limit, blocks websites, manages the router's Wi-Fi networks and shows who used
-how much. It runs on a PC in the home and talks to a Huawei fibre router over the local network.
-No household data leaves the house.</p>
-<p>There's a <strong>Node and Fastify</strong> engine that signs in to the router, enforces the rules
-and samples usage into SQLite, and a <strong>React</strong> dashboard that opens on the PC or on any
-phone on the home Wi-Fi, where it installs as a PWA. On Windows it ships as an installer: the engine
-runs as a service, so it keeps enforcing with nobody signed in, and a <strong>Tauri</strong> tray app
-shows status and sends notifications. I started it in September 2026; it's at v1.1.0 after 265
-commits.</p>
-
-<h2>Talking to the router without a browser</h2>
-<p>Huawei's ONTs have no API, only a web UI. That UI turns out to ship its data as inline JavaScript
-globals (the device list, Wi-Fi networks, MAC filters and parental-control templates), so FibreLink
-reads those as text over plain HTTP and posts the same forms the pages submit. The whole family of
-Huawei ONT web UIs shares those pages, so it should work on most models
-unmodified. The first driver steered a
-headless browser with Playwright; the HTTP driver is the one that ships.</p>
-
-<h2>The router does most of the enforcing</h2>
-<p>Schedules and site blocks are written into the router's own parental-control templates and
-bound to each device's MAC address, and a pause adds the device to the Wi-Fi MAC filter. So most
-schedules and all site blocks keep holding while the PC is off. Data limits, pausing by hand and
-the few schedules the router can't fit run from the engine instead. The app's database is the
-source of truth: on startup and on a timer it reads the router back and corrects any drift.</p>
-
-<h2>Usage by person</h2>
-<p>This hardware can't meter single devices, but it does count bytes per Wi-Fi network. So a person
-or group gets their own network, and the engine credits each slice of traffic to whoever owned that
-network at the time. Wired devices and the main network can't be split this way, and the dashboard
-shows that leftover as its own figure instead of hiding it.</p>
+<p>FibreLink puts you in charge of your home internet. Decide who gets online, when, and how
+much, with no more arguments at bedtime.</p>
+<p>Group devices by person, pause the kids' phones for homework or bedtime, set daily data limits,
+block websites, and see exactly who used what. Manage it all from your PC or any phone in the house,
+and schedules and site blocks keep working even when the PC is off.</p>
+<p>Built with <strong>TypeScript</strong>, <strong>Node.js</strong>, <strong>Fastify</strong>,
+<strong>React</strong> and <strong>Tauri</strong>.</p>
 </div>
 
                 <h2 class="sr-only">Built with</h2>
@@ -111,7 +86,7 @@ shows that leftover as its own figure instead of hiding it.</p>
             </article>
 
             <nav class="pager" aria-label="More projects">
-                <a class="prev" href="/projects/expense-tracker/"><span class="dir">← Previous</span><span class="to">Expense Tracker</span></a>
+                <a class="prev" href="/projects/recast/"><span class="dir">← Previous</span><span class="to">Recast</span></a>
                 <a class="next" href="/projects/store-room/"><span class="dir">Next →</span><span class="to">Store Room</span></a>
             </nav>
         </main>
