@@ -5,10 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Sweep · Patrick Ackom</title>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <meta name="description" content="A cleaner for programmers on Windows: frees the space dev projects can rebuild (node_modules, build folders, package caches, Docker, Android SDK) and never touches what they can't. Built with Rust, Tauri 2 and React." />
+        <meta name="description" content="A cleaner for programmers on Windows: frees the space dev projects can rebuild (node_modules, build folders, package caches, Docker, Android SDK) and leaves anything risky for you to decide. Built with Rust, Tauri 2 and React." />
         <link rel="canonical" href="https://patrickackom.site/projects/sweep/" />
         <meta property="og:title" content="Sweep · Patrick Ackom" />
-        <meta property="og:description" content="A cleaner for programmers on Windows: frees the space dev projects can rebuild (node_modules, build folders, package caches, Docker, Android SDK) and never touches what they can't. Built with Rust, Tauri 2 and React." />
+        <meta property="og:description" content="A cleaner for programmers on Windows: frees the space dev projects can rebuild (node_modules, build folders, package caches, Docker, Android SDK) and leaves anything risky for you to decide. Built with Rust, Tauri 2 and React." />
         <meta property="og:url" content="https://patrickackom.site/projects/sweep/" />
         <meta property="og:type" content="article" />
         <meta name="theme-color" content="#1a1918" />
@@ -76,12 +76,13 @@
 with photos or videos: with <strong>node_modules</strong>, <strong>target</strong> and
 <strong>dist</strong> folders, package caches, Docker images and old Android SDKs. Every cleaner I
 tried went after the wrong things. Sweep goes after exactly these, and frees gigabytes in one click.</p>
-<p>What makes it different is that it only offers what can be rebuilt. A folder is only listed when
+<p>What makes it different is that it only pre-ticks what can be rebuilt, and tells you why for everything else. A folder is only listed when
 its project file sits beside it (a <strong>package.json</strong>, a <strong>Cargo.toml</strong>),
 when git tracks nothing inside it, and when it isn't a link or a system folder. Projects with
 uncommitted changes are never ticked for you, and every check runs again the moment before anything
-is deleted. Caches are cleaned with each tool's own command (npm, pnpm, Yarn, pip, dotnet), and
-Docker with docker itself, so no tool is ever left with a half-deleted cache.</p>
+is deleted. Caches are cleaned with each tool's own command where there is one (npm, pnpm, Yarn, pip, dotnet)
+and Docker with docker itself; anything Sweep deletes itself is moved aside first, so no tool is
+ever left with a half-deleted cache.</p>
 <p>It lives quietly in the tray, rescans once a day and tells you when there's a lot to reclaim.
 Search, filter and sort to find a specific project, send things to the Recycle Bin instead of
 deleting them, or do a dry run first. A History page shows everything it has freed, an Explore view
