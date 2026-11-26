@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 100 100">
+<rect width="100" height="100" rx="24" fill="#0f1513"/>
+<path d="M47.5 72 Q42.0 41.0 27.0 10.1" stroke="#3ee0a1" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+<path d="M47.9 72 Q43.1 41.9 30.3 11.9" stroke="#3ee0a1" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+<path d="M48.2 72 Q44.2 42.8 33.6 13.6" stroke="#3ee0a1" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+<path d="M48.6 72 Q45.4 40.7 36.9 9.4" stroke="#3ee0a1" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+<path d="M48.9 72 Q46.5 41.6 40.1 11.1" stroke="#3ee0a1" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+<path d="M49.3 72 Q47.7 39.4 43.4 6.9" stroke="#3ee0a1" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+<path d="M49.6 72 Q48.9 40.3 46.7 8.6" stroke="#3ee0a1" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+<path d="M50.0 72 Q50.0 41.2 50.0 10.4" stroke="#3ee0a1" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+<path d="M50.4 72 Q51.1 39.7 53.3 7.4" stroke="#3ee0a1" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+<path d="M50.7 72 Q52.3 41.2 56.6 10.5" stroke="#3ee0a1" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+<path d="M51.1 72 Q53.5 39.8 59.9 7.5" stroke="#3ee0a1" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+<path d="M51.4 72 Q54.6 41.3 63.1 10.6" stroke="#3ee0a1" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+<path d="M51.8 72 Q55.8 42.8 66.4 13.6" stroke="#3ee0a1" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+<path d="M52.1 72 Q56.9 41.3 69.7 10.7" stroke="#3ee0a1" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+<path d="M52.5 72 Q58.0 42.9 73.0 13.7" stroke="#3ee0a1" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+<rect x="43.5" y="68" width="13" height="10" rx="2.5" fill="#0a0f0d" stroke="#2aa7c9" stroke-width="1.5"/>
+<path d="M46.8 78 L43.6 88" stroke="#3ee0a1" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M48.4 78 L46.8 88" stroke="#3ee0a1" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M50.0 78 L50.0 88" stroke="#3ee0a1" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M51.6 78 L53.2 88" stroke="#3ee0a1" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M53.2 78 L56.4 88" stroke="#3ee0a1" stroke-width="2.2" stroke-linecap="round"/>
+</svg>
