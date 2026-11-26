@@ -115,20 +115,20 @@
                     that does exactly what we need and logs our MoMo payments by itself. Later, I got fibre
                     at home, and the router's settings were a maze, so I built
                     <a class="chip" href="/projects/fibrelink/"><span class="chip-ico chip-ico--img" style="--icon: url(/img/logos/fibrelink.svg)" aria-hidden="true"></span>FibreLink</a>,
-                    a simple way to decide who in the house gets the internet, and when. Most recently, I got
+                    a simple way to decide who in the house gets the internet, and when. Then I got
                     tired of hunting for a different website every time I needed to convert a file, so I built
                     <a class="chip" href="/projects/recast/"><span class="chip-ico chip-ico--img" style="--icon: url(/img/logos/recast.svg)" aria-hidden="true"></span>Recast</a>,
                     which turns any file into whatever format you need.
                 </p>
                 <p>
-                    And building all of these, I realised I was running out of space. Every cleaner out
+                    Building all of these, I realised I was running out of space. Every cleaner out
                     there went after photos, videos and old downloads, but my need was niche: I needed a
                     programmer's cleaner. So I built
                     <a class="chip" href="/projects/sweep/"><span class="chip-ico chip-ico--img" style="--icon: url(/img/logos/sweep.svg)" aria-hidden="true"></span>Sweep</a>,
                     which finds what dev work leaves behind, from node_modules and build folders
-                    to package caches, Docker images and old Android SDKs, and only ever offers what can be
-                    rebuilt. It checks git first, so nothing with <span class="hand">uncommitted work</span>
-                    is ever touched.
+                    to package caches, Docker images and old Android SDKs, and only pre-ticks what can safely
+                    be rebuilt. It checks git first: it never offers a folder git tracks anything in, and it
+                    never ticks a project with <span class="hand">uncommitted work</span> for you.
                 </p>
                 <p>
                     Away from the screen I'm into
@@ -185,7 +185,7 @@
                             </div>
                             <div class="card-meta">
                                 <h3 class="card-title">Sweep <span class="arrow" aria-hidden="true">→</span></h3>
-                                <p class="card-line">A cleaner for programmers: frees what dev projects can rebuild, and never what they can't.</p>
+                                <p class="card-line">A cleaner for programmers: frees what dev projects can rebuild, and leaves the rest to you.</p>
                                 <p class="card-stack">Rust, Tauri 2, React 19</p>
                             </div>
                         </a>
